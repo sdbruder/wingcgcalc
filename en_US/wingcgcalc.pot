@@ -1,0 +1,265 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-11-30 17:13-0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: index.php:9
+msgid "Flying Wing CG Calculator"
+msgstr ""
+
+#: index.php:45
+msgid "Home"
+msgstr ""
+
+#: index.php:46
+msgid "Blog"
+msgstr ""
+
+#: index.php:47
+msgid "Contact"
+msgstr ""
+
+#: index.php:60
+msgid "WingCGCalc"
+msgstr ""
+
+#: index.php:78
+msgid "Measures"
+msgstr ""
+
+#: index.php:83
+msgid "Options"
+msgstr ""
+
+#: index.php:85
+msgid "Unit System"
+msgstr ""
+
+#: index.php:87
+msgid "Metric"
+msgstr ""
+
+#: index.php:88
+msgid "Imperial"
+msgstr ""
+
+#: index.php:92 index.php:96
+msgid "CG Position"
+msgstr ""
+
+#: index.php:96
+msgid ""
+"For tailless wings, start with 15% for beginners going to 25% for experts. "
+"Trainers airplanes normally use 25-33%."
+msgstr ""
+
+#: index.php:99
+#, php-format
+msgid "15% for beginners, 25% for experts, 25-33% for airplanes."
+msgstr ""
+
+#: index.php:115 index.php:160
+msgid "Panel span"
+msgstr ""
+
+#: index.php:119 index.php:164
+msgid ""
+"Span of this panel in the semiwing (Ex: If your wing has 1200mm span and "
+"only one panel, use 600mm)."
+msgstr ""
+
+#: index.php:119 index.php:164
+msgid "Panel Span"
+msgstr ""
+
+#: index.php:125
+msgid "Root chord"
+msgstr ""
+
+#: index.php:129
+msgid "Chord in the root of this panel"
+msgstr ""
+
+#: index.php:129
+msgid "Root Chord"
+msgstr ""
+
+#: index.php:135 index.php:170
+msgid "Tip chord"
+msgstr ""
+
+#: index.php:139 index.php:174
+msgid "Chord in the tip of this panel"
+msgstr ""
+
+#: index.php:139 index.php:174
+msgid "Tip Chord"
+msgstr ""
+
+#: index.php:145 index.php:149 index.php:180 index.php:184
+msgid "Sweep"
+msgstr ""
+
+#: index.php:149
+msgid "For forward swept wings use negative values."
+msgstr ""
+
+#: index.php:158
+#, php-format
+msgid "Panel %d"
+msgstr ""
+
+#: index.php:184
+msgid "For forward swept wings panels use negative values."
+msgstr ""
+
+#: index.php:196
+msgid "Wing"
+msgstr ""
+
+#: index.php:200
+msgid "Results"
+msgstr ""
+
+#: index.php:204
+msgid "Wing Area"
+msgstr ""
+
+#: index.php:213
+msgid "MAC Distance"
+msgstr ""
+
+#: index.php:222
+msgid "MAC Length"
+msgstr ""
+
+#: index.php:231
+msgid "CG"
+msgstr ""
+
+#: index.php:246
+msgid "About"
+msgstr ""
+
+#: index.php:247
+msgid ""
+"Ive used the excelent work of z80 (<a href=\"http://fwcg.3dzone.dk/\">http://"
+"fwcg.3dzone.dk/</a>) in the past, but the limitations of one single panel "
+"and no forward sweep made me look for multi-panel CG calcs, and Ive found "
+"only very old windows programs. Accustomed to the online and direct use of "
+"z80's tool, Ive decided to make my own online CG calculator, with forward "
+"sweep and multiple panels."
+msgstr ""
+
+#: index.php:248
+msgid ""
+"WingCGCalc is a flying wing CG calculator flexible enough to calculate "
+"complex wings, with multiple panels and forward swept. As the percentual "
+"position of the MAC for the CG is also configurable, you can use it with "
+"standard airplanes (with tail) too, It's only a question of configuring the "
+"right amount."
+msgstr ""
+
+#: index.php:250
+msgid "TODO"
+msgstr ""
+
+#: index.php:252
+msgid "Deep-link for wings designs"
+msgstr ""
+
+#: index.php:253
+msgid "Save option to build a database of wings designs"
+msgstr ""
+
+#: index.php:254
+msgid ""
+"Some helper drawings exemplifying in the wing image what is the current "
+"measure been edited."
+msgstr ""
+
+#: index.php:255
+msgid "Any other ideias? Please contact me."
+msgstr ""
+
+#: index.php:258
+msgid "History"
+msgstr ""
+
+#: index.php:260
+msgid "v 1.2"
+msgstr ""
+
+#: index.php:262
+msgid "Added About and History in end of the page."
+msgstr ""
+
+#: index.php:263
+msgid ""
+"Proper internationalization with gettext support. If you want wingcgcalc in "
+"your language and can contribute with the translation, please contact me."
+msgstr ""
+
+#: index.php:264
+msgid ""
+"Options moved to the start of the measures forms, a few users didnt found "
+"the CG % with it the end."
+msgstr ""
+
+#: index.php:265
+msgid "Popups implemented with little helper texts for each entry."
+msgstr ""
+
+#: index.php:268
+msgid "v 1.1"
+msgstr ""
+
+#: index.php:270
+msgid "Brazilian Portuguese translation added."
+msgstr ""
+
+#: index.php:271
+msgid "Unit system switch between metric and imperial systems."
+msgstr ""
+
+#: index.php:272
+msgid ""
+"A little less broken with Internet Explorers (still without canvas support)."
+msgstr ""
+
+#: index.php:275
+msgid "v 1.0"
+msgstr ""
+
+#: index.php:277
+msgid "Initial version."
+msgstr ""
+
+#: index.php:291
+msgid "Internet Explorer not supported"
+msgstr ""
+
+#: index.php:294
+msgid ""
+"WingCGCalc uses a great deal of HTML5, javascript and canvas support, which "
+"Internet Explorer currently cant support (there is no CANVAS in Internet "
+"Explorer, for example). Sorry. Use any other modern browser."
+msgstr ""
+
+#: index.php:297
+msgid "Ok"
+msgstr ""

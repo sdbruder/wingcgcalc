@@ -1,0 +1,130 @@
+/* Override some defaults */
+html, body {
+background-color: #eee;
+background-image: url("../imgs/rubber_grip.png");
+}
+body {
+padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+}
+footer {
+    border-top: 0px;
+    margin-top: 0px;
+}
+.container > footer p {
+text-align: center; /* center align it with the container */
+color: #ccc;
+padding-bottom: 40px;
+}
+.container {
+width: 940px; 
+z-index: 1;
+}
+
+/* The white background content wrapper */
+.container .content {
+opacity: 1;
+background-color: #fff;
+padding: 20px;
+margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+-webkit-border-radius: 0 0 6px 6px;
+   -moz-border-radius: 0 0 6px 6px;
+        border-radius: 0 0 6px 6px;
+-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+// used in popovers
+.popover .inner .title {
+opacity: 0.6;
+background-color: #fff;
+}
+.content {
+opacity: 0.6;
+background-color: #fff;
+padding: 10px;
+margin: 0; 
+-webkit-border-radius: 0 0 6px 6px;
+   -moz-border-radius: 0 0 6px 6px;
+        border-radius: 0 0 6px 6px;
+-webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+   -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+        box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+/* Page header tweaks */
+.page-header {
+padding: 20px 20px 10px;
+margin: -30px -20px 20px;
+}
+.page-header h1 {
+margin-top: 60px;
+margin-bottom: 0px;
+}
+
+#googlead {
+padding-top: 10px;
+height: 90px;
+}
+#googlead {
+position: relative;
+left: 32px;
+}
+
+body .topbar .fill {
+    background-color: #161f44;
+    background-color: #161f44;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#2c305b), to(#161f44));
+    background-image: -moz-linear-gradient(top, #2c305b, #161f44);
+    background-image: -ms-linear-gradient(top, #2c305b, #161f44);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #2c305b), color-stop(100%, #161f44));
+    background-image: -webkit-linear-gradient(top, #2c305b, #161f44);
+    background-image: -o-linear-gradient(top, #2c305b, #161f44);
+    background-image: linear-gradient(top, #2c305b, #161f44);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#2c305b', endColorstr='#161f44', GradientType=0);
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Give a quick and non-cross-browser friendly divider */
+.content .span4 {
+margin-left: 0;
+padding-left: 19px;
+border-left: 1px solid #eee;
+}
+
+.topbar .btn {
+border: 0;
+}
+
+/* Fix por input append not clearing help texts correctly */
+.input-append, .input-prepend {
+ overflow: auto;
+ width: 100%;
+}
+
+#wingcanvas {
+    /*padding:1em; 
+    margin: 1em 2em 2em; */
+    /*width: 580px;
+    height: 400px;*/
+    background-image: url("../imgs/green_graphy.png");
+}
+
+.small {
+    font-size: 85%;
+}
+
+fieldset .actions {
+    background: white;
+}
+
+/* input append and prepend fix */
+.input .input-prepend .add-on, .input .input-append .add-on {
+color: #646464;
+}
+
+/* input height fix */
+input, textarea, select, .uneditable-input {
+    height: 18px;
+}
