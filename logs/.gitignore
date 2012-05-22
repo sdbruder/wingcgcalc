@@ -1,0 +1,3 @@
+#ignore log files
+*_log
+*_log.gz
