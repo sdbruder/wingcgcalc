@@ -40,7 +40,7 @@ include('../php/i18n.php');
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">WingCGCalc v1.2</a>
+          <a class="brand" href="#">WingCGCalc v1.2.1</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
@@ -257,6 +257,13 @@ include('../php/i18n.php');
 
                     <h2><? print _('History'); ?></h2>
                     <ul>
+	                    <li><h4><? print _("v 1.2.1"); ?></h4>
+	                        <ul>
+	                            <li><? print _("i18n bugfixing."); ?></li>
+	                            <li><? print _("A proper build system, Makefile and so on."); ?></li>
+	                        </ul>
+	                    </li>
+	                    
                         <li><h4><? print _("v 1.2"); ?></h4>
                             <ul>
                                 <li><? print _("Added About and History in end of the page."); ?></li>
