@@ -40,7 +40,7 @@ include('../php/i18n.php');
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">WingCGCalc v1.3</a>
+          <a class="brand" href="#">WingCGCalc v1.3.1</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
@@ -288,6 +288,12 @@ include('../php/i18n.php');
 
                     <h2><? print _('History'); ?></h2>
                     <ul>
+	                    <li><h4><? print _("v 1.3.1"); ?></h4>
+	                        <ul>
+	                            <li><? print _("if the url shortening fails in any way use the full URL instead."); ?></li>
+	                        </ul>
+	                    </li>
+	                    
 						<li><h4><? print _("v 1.3"); ?></h4>
 						    <ul>
 						        <li><? print _("big rework to allow deep linking to arbitrary wings with bit.ly url shorting."); ?></li>

@@ -318,7 +318,11 @@ function draw_wing() {
     $.ajax({
       url: "/php/short.php?addr="+encodeURIComponent(url),
       success: function(data) {
-	      $('#publicurl').val(data);
+	      if (data.substr(0, 7) == 'http://') {
+		      $('#publicurl').val(data);
+	      } else {
+		      $('#publicurl').val($('#deeplinkurl').val());
+	      }
       }
     });
     // $('#publicurl').val($('#deeplinkurl').val());

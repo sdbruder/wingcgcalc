@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-23 15:31-0300\n"
+"POT-Creation-Date: 2012-05-23 17:57-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -210,79 +210,79 @@ msgstr ""
 msgid "History"
 msgstr ""
 
-#: index.php:260 en_US/index.php:267 en_US/index.php:303
+#: index.php:260 en_US/index.php:267 en_US/index.php:303 en_US/index.php:309
 msgid "v 1.2"
 msgstr ""
 
-#: index.php:262 en_US/index.php:269 en_US/index.php:305
+#: index.php:262 en_US/index.php:269 en_US/index.php:305 en_US/index.php:311
 msgid "Added About and History in end of the page."
 msgstr ""
 
-#: index.php:263 en_US/index.php:270 en_US/index.php:306
+#: index.php:263 en_US/index.php:270 en_US/index.php:306 en_US/index.php:312
 msgid ""
 "Proper internationalization with gettext support. If you want wingcgcalc in "
 "your language and can contribute with the translation, please contact me."
 msgstr ""
 
-#: index.php:264 en_US/index.php:271 en_US/index.php:307
+#: index.php:264 en_US/index.php:271 en_US/index.php:307 en_US/index.php:313
 msgid ""
 "Options moved to the start of the measures forms, a few users didnt found "
 "the CG % with it the end."
 msgstr ""
 
-#: index.php:265 en_US/index.php:272 en_US/index.php:308
+#: index.php:265 en_US/index.php:272 en_US/index.php:308 en_US/index.php:314
 msgid "Popups implemented with little helper texts for each entry."
 msgstr ""
 
-#: index.php:268 en_US/index.php:275 en_US/index.php:311
+#: index.php:268 en_US/index.php:275 en_US/index.php:311 en_US/index.php:317
 msgid "v 1.1"
 msgstr ""
 
-#: index.php:270 en_US/index.php:277 en_US/index.php:313
+#: index.php:270 en_US/index.php:277 en_US/index.php:313 en_US/index.php:319
 msgid "Brazilian Portuguese translation added."
 msgstr ""
 
-#: index.php:271 en_US/index.php:278 en_US/index.php:314
+#: index.php:271 en_US/index.php:278 en_US/index.php:314 en_US/index.php:320
 msgid "Unit system switch between metric and imperial systems."
 msgstr ""
 
-#: index.php:272 en_US/index.php:279 en_US/index.php:315
+#: index.php:272 en_US/index.php:279 en_US/index.php:315 en_US/index.php:321
 msgid ""
 "A little less broken with Internet Explorers (still without canvas support)."
 msgstr ""
 
-#: index.php:275 en_US/index.php:282 en_US/index.php:318
+#: index.php:275 en_US/index.php:282 en_US/index.php:318 en_US/index.php:324
 msgid "v 1.0"
 msgstr ""
 
-#: index.php:277 en_US/index.php:284 en_US/index.php:320
+#: index.php:277 en_US/index.php:284 en_US/index.php:320 en_US/index.php:326
 msgid "Initial version."
 msgstr ""
 
-#: index.php:291 en_US/index.php:298 en_US/index.php:334
+#: index.php:291 en_US/index.php:298 en_US/index.php:334 en_US/index.php:340
 msgid "Internet Explorer not supported"
 msgstr ""
 
-#: index.php:294 en_US/index.php:301 en_US/index.php:337
+#: index.php:294 en_US/index.php:301 en_US/index.php:337 en_US/index.php:343
 msgid ""
 "WingCGCalc uses a great deal of HTML5, javascript and canvas support, which "
 "Internet Explorer currently cant support (there is no CANVAS in Internet "
 "Explorer, for example). Sorry. Use any other modern browser."
 msgstr ""
 
-#: index.php:297 en_US/index.php:304 en_US/index.php:340
+#: index.php:297 en_US/index.php:304 en_US/index.php:340 en_US/index.php:346
 msgid "Ok"
 msgstr ""
 
-#: en_US/index.php:260 en_US/index.php:296
+#: en_US/index.php:260 en_US/index.php:296 en_US/index.php:302
 msgid "v 1.2.1"
 msgstr ""
 
-#: en_US/index.php:262 en_US/index.php:298
+#: en_US/index.php:262 en_US/index.php:298 en_US/index.php:304
 msgid "i18n bugfixing."
 msgstr ""
 
-#: en_US/index.php:263 en_US/index.php:299
+#: en_US/index.php:263 en_US/index.php:299 en_US/index.php:305
 msgid "A proper build system, Makefile and so on."
 msgstr ""
 
@@ -290,11 +290,19 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: en_US/index.php:291
+#: en_US/index.php:291 en_US/index.php:297
 msgid "v 1.3"
 msgstr ""
 
-#: en_US/index.php:293
+#: en_US/index.php:293 en_US/index.php:299
 msgid ""
 "big rework to allow deep linking to arbitrary wings with bit.ly url shorting."
+msgstr ""
+
+#: en_US/index.php:291
+msgid "v 1.3.1"
+msgstr ""
+
+#: en_US/index.php:293
+msgid "if the url shortening fails in any way use the full URL instead."
 msgstr ""
