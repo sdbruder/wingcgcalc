@@ -22,7 +22,7 @@ include('../php/i18n.php');
     <script src="../js/bootstrap-twipsy.js"></script>
     <script src="../js/bootstrap-popover.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
-    <script src="../js/wingcgcalc-1.2.js"></script>
+    <script src="../js/wingcgcalc-1.3.js"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-27285625-1']);
@@ -40,7 +40,7 @@ include('../php/i18n.php');
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">WingCGCalc v1.2.1</a>
+          <a class="brand" href="#">WingCGCalc v1.3</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
@@ -73,36 +73,56 @@ include('../php/i18n.php');
                     </div>
                 </div>
             </div>
+            <?
+            if (!isset($_GET['unitsystem'])) {
+            	$_GET['panelsqty'] = 1;
+            	$_GET['unitsystem'] = 'metric';
+            	$_GET['cgpos'] = 20;
+            	$_GET['panelspan1'] = 600;
+            	$_GET['chord0'] = 340;
+            	$_GET['chord1'] = 180;
+            	$_GET['sweep1'] = 300;
+            } 
+            ?>
             <div class="row">
                 <div class="span6">
                     <h2><? print _('Measures'); ?></h2>
                     <form id="measuresform" action="" class="" onsubmit="return false">
-                        <input type="hidden" id="panelsqty" name="panelsqty" value="1">
-
+                        <input type="hidden" id="panelsqty" name="panelsqty" value="<?= $_GET['panelsqty'] ?>">
+                        <input type="hidden" id="unitsystem" name="unitsystem" value="metric"> <? // to be fixed later in the js setup ?>
                         <fieldset>
                             <legend><? print _('Options'); ?></legend>
                             <div class="clearfix">
                                 <label for="cgpos"><? print _('Unit System'); ?></label>
                                 <div class="input">
-                                    <button id="btn_metric"   class="btn primary disabled"><? print _('Metric'); ?></button>&nbsp;
-                                    <button id="btn_imperial" class="btn"><? print _('Imperial'); ?></button>
+                            	<? if ($_GET['sys'] == 'imperial') { ?>
+                                    <button id="btn_metric"   class="btn"><? print _('Metric'); ?></button>&nbsp;
+                                    <button id="btn_imperial" class="btn primary disabled"><? print _('Imperial'); ?></button>
+                                    <script>
+                                    // global variables setup
+                                    window.systemunit = "imperial";
+                                    </script>
+                                <? } else { ?>
+									<button id="btn_metric"   class="btn primary disabled"><? print _('Metric'); ?></button>&nbsp;
+									<button id="btn_imperial" class="btn"><? print _('Imperial'); ?></button>
+                                    <script>
+                                    // global variables setup
+                                    window.systemunit = "metric";
+                                    </script>
+                                <? } ?>
                                 </div>
                             </div><!-- /clearfix -->
                             <div class="clearfix">
                                 <label for="cgpos"><? print _('CG Position'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="cgpos" name="cgpos" size="10" type="text" value="20"
+                                        <input class="medium redraw" id="cgpos" name="cgpos" size="10" type="text" value="<?= $_GET['cgpos'] ?>"
                                             rel="popover" data-content="<? print _('For tailless wings, start with 15% for beginners going to 25% for experts. Trainers airplanes normally use 25-33%.'); ?>" data-original-title="<? print _('CG Position'); ?>">
                                         <span id="cgunit" class="add-on">%</span>
                                     </div>
                                     <span class="help-block"><? print _('15% for beginners, 25% for experts, 25-33% for airplanes.'); ?></span>
                                 </div>
                             </div><!-- /clearfix -->
-                            <!--<div class="actions">
-                                <input type="submit" id="calc"   class="btn primary" value="Calc"> 
-                                <button type="reset" id="cancel" class="btn">Cancel</button>
-                            </div>--!>
                         </fieldset>
 
                         <fieldset>
@@ -115,7 +135,7 @@ include('../php/i18n.php');
                                 <label for="panelspan1"><? print _('Panel span'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="panelspan1" name="panelspan1" size="10" type="text" value="600"
+                                        <input class="medium redraw" id="panelspan1" name="panelspan1" size="10" type="text" value="<?= $_GET['panelspan1'] ?>"
                                             rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm).'); ?>" data-original-title="<? print _('Panel Span'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -125,7 +145,7 @@ include('../php/i18n.php');
                                 <label for="chord0"><? print _('Root chord'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="chord0" name="chord0" size="10" type="text" value="340"
+                                        <input class="medium redraw" id="chord0" name="chord0" size="10" type="text" value="<?= $_GET['chord0'] ?>"
                                             rel="popover" data-content="<? print _('Chord in the root of this panel'); ?>" data-original-title="<? print _('Root Chord'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -135,7 +155,7 @@ include('../php/i18n.php');
                                 <label for="chord1"><? print _('Tip chord'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="chord1" name="chord1" size="10" type="text" value="180"
+                                        <input class="medium redraw" id="chord1" name="chord1" size="10" type="text" value="<?= $_GET['chord1'] ?>"
                                             rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -145,7 +165,7 @@ include('../php/i18n.php');
                                 <label for="sweep1"><? print _('Sweep'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="sweep1" name="sweep1" size="10" type="text" value="300"
+                                        <input class="medium redraw" id="sweep1" name="sweep1" size="10" type="text" value="<?= $_GET['sweep1'] ?>"
                                             rel="popover" data-content="<? print _('For forward swept wings use negative values.'); ?>" data-original-title="<? print _('Sweep'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -154,13 +174,17 @@ include('../php/i18n.php');
                         </fieldset>
 <? for($p=2;$p<=6;$p++) {
 ?>
-                        <fieldset id="panel<? print $p; ?>" class="hide">
+						<? if ($_GET['panelsqty'] >= $p) { ?>
+	                        <fieldset id="panel<? print $p; ?>" class="">
+                        <? } else { ?>
+	                        <fieldset id="panel<? print $p; ?>" class="hide">
+                        <? } ?>
                             <legend><? printf( _('Panel %d'),$p); ?></legend>
                             <div class="clearfix">
                                 <label for="panelspan<? print $p; ?>"><? print _('Panel span'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="panelspan<? print $p; ?>" name="panelspan<? print $p; ?>" size="10" type="text"
+                                        <input class="medium redraw" id="panelspan<? print $p; ?>" name="panelspan<? print $p; ?>" size="10"    value="<?= $_GET["panelspan$p"] ?>" type="text"
                                             rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm).'); ?>" data-original-title="<? print _('Panel Span'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -170,7 +194,7 @@ include('../php/i18n.php');
                                 <label for="chord<? print $p; ?>"><? print _('Tip chord'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="chord<? print $p; ?>" name="chord<? print $p; ?>" size="10" type="text"
+                                        <input class="medium redraw" id="chord<? print $p; ?>" name="chord<? print $p; ?>" size="10" value="<?= $_GET["chord$p"] ?>" type="text"
                                             rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -180,7 +204,7 @@ include('../php/i18n.php');
                                 <label for="sweep<? print $p; ?>"><? print _('Sweep'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="sweep<? print $p; ?>" name="sweep<? print $p; ?>" size="10" type="text"
+                                        <input class="medium redraw" id="sweep<? print $p; ?>" name="sweep<? print $p; ?>" size="10" value="<?= $_GET["sweep$p"] ?>" type="text"
                                             rel="popover" data-content="<? print _('For forward swept wings panels use negative values.'); ?>" data-original-title="<? print _('Sweep'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -199,6 +223,7 @@ include('../php/i18n.php');
                     <div>
                         <h2><? print _('Results'); ?></h2>
                         <form id="resultsform" action="" class="">
+                        <input type="hidden" id="deeplinkurl" name="deeplinkurl" value="">                        
                             <fieldset>
                                 <div class="clearfix">
                                     <label for="area"><? print _('Wing Area'); ?></label>
@@ -236,6 +261,12 @@ include('../php/i18n.php');
                                         </div>
                                     </div>
                                 </div><!-- /clearfix -->
+								<div class="clearfix">
+								    <label for="publicurl"><? print _('URL'); ?></label>
+								    <div class="input">
+							            <input class="medium" id="publicurl" name="publicurl" size="300" type="text">
+								    </div>
+								</div><!-- /clearfix -->
                             </fieldset>
                         </form>
                     </div>
@@ -257,6 +288,11 @@ include('../php/i18n.php');
 
                     <h2><? print _('History'); ?></h2>
                     <ul>
+						<li><h4><? print _("v 1.3"); ?></h4>
+						    <ul>
+						        <li><? print _("big rework to allow deep linking to arbitrary wings with bit.ly url shorting."); ?></li>
+						    </ul>
+						</li>
 	                    <li><h4><? print _("v 1.2.1"); ?></h4>
 	                        <ul>
 	                            <li><? print _("i18n bugfixing."); ?></li>
@@ -306,6 +342,9 @@ include('../php/i18n.php');
     </div>
     <script>
         $(document).ready(function(){
+        	<? if ($_GET['unitsystem'] != 'metric') { ?>
+	        	systemunits_to_imperial(false);
+        	<? } ?>
             wingcgcalc_setup();
             draw_wing();
 
