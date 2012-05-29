@@ -260,8 +260,8 @@ function makeURL() {
 		url = url + mkURIcomponent('chord'+p);
 		url = url + mkURIcomponent('sweep'+p);
 	}
-	box = document.location;
-	site = box.origin + box.pathname;
+	box = window.document.location;
+	site = box.protocol + "//" + box.hostname + box.pathname;
 	return site+url; 
 }
 
