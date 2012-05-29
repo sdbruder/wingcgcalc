@@ -147,11 +147,12 @@ function load_panels(qty) {
     window.panels[0].root = panels[1].root;   // first chord
     window.panels[0].tipc = panels[qty].tipc; // last chord
 
+	debug = "";
     var cg_pos = strtofloat($("#cgpos").val());
     for(i=1;i<=qty;i++) {
         p = window.panels[i];
         if (p.span>0) {
-            window.panels[i].wingarea = (p.root + p.tipc) * p.span;
+            window.panels[i].wingarea = ((p.root + p.tipc)/2) * p.span;
             
             // Find LE and TE line formula
             var le_b = 0;
@@ -179,17 +180,12 @@ function load_panels(qty) {
             window.panels[i].maclen = p.te_mac_y - p.le_mac_y;
             window.panels[i].macdist = p.mac_x;
 
-            // Update UI
-            /*
-            if (window.systemunit == "metric") {
-                $('#area').val(    Math.round( (p.wingarea/10000) * 100) / 100);
-            } else {
-                $('#area').val(    Math.round( (p.wingarea)       * 100) / 100);
-            }
-            $('#macdist').val( Math.round( p.macdist * 100) / 100);
-            $('#maclen').val(  Math.round( p.maclen * 100) / 100);
-            $('#cgdist').val(  Math.round( p.cg_dist * 100) / 100);
-            */
+			debug += "Panel "+i.toString()+"\n";
+			debug += "\tArea "+p.wingarea.toString()+"\n";
+			debug += "\tX "+   p.mac_x.toString()+"\n";
+			debug += "\tle_y "+p.le_mac_y.toString()+"\n";
+			debug += "\tte_y "+p.te_mac_y.toString()+"\n";
+			debug += "\n";
         }
     }
 
@@ -198,37 +194,46 @@ function load_panels(qty) {
     window.panels[0].mac_x = 0;
     window.panels[0].le_mac_y = 0;
     window.panels[0].te_mac_y = 0;
-    window.panels[0].cg_dist = 0;
-    window.panels[0].maclen = 0;
-    window.panels[0].macdist = 0;
+    rootx = 0;
+    rooty = 0;
     for(i=1;i<=qty;i++) {
         p = window.panels[i];
         if (p.wingarea>0) {
             window.panels[0].wingarea += p.wingarea;
-            window.panels[0].mac_x    += p.mac_x * p.wingarea;
-            window.panels[0].le_mac_y += p.le_mac_y * p.wingarea;
-            window.panels[0].te_mac_y += p.te_mac_y * p.wingarea;
-            window.panels[0].cg_dist  += p.cg_dist * p.wingarea;
-            window.panels[0].maclen   += p.maclen * p.wingarea;
-            window.panels[0].macdist  += p.macdist * p.wingarea;
+            window.panels[0].mac_x    += (rootx + p.mac_x) * p.wingarea;
+            window.panels[0].le_mac_y += (rooty + p.le_mac_y) * p.wingarea;
+            window.panels[0].te_mac_y += (rooty + p.te_mac_y) * p.wingarea;
+            rootx += p.span;
+            rooty += p.sweep;
         }
     }
-    window.panels[0].mac_x    = window.panels[0].mac_x / window.panels[0].wingarea;
-    window.panels[0].le_mac_y = window.panels[0].le_mac_y / window.panels[0].wingarea;
-    window.panels[0].te_mac_y = window.panels[0].te_mac_y / window.panels[0].wingarea;
-    window.panels[0].cg_dist  = window.panels[0].cg_dist / window.panels[0].wingarea;
-    window.panels[0].maclen   = window.panels[0].maclen / window.panels[0].wingarea;
-    window.panels[0].macdist  = window.panels[0].macdist / window.panels[0].wingarea;
+    p = window.panels[0];
+    window.panels[0].mac_x    = p.mac_x    / p.wingarea;
+    window.panels[0].le_mac_y = p.le_mac_y / p.wingarea;
+    window.panels[0].te_mac_y = p.te_mac_y / p.wingarea;
+    // Compute CG
+    window.panels[0].cg_dist = p.le_mac_y + (p.te_mac_y - p.le_mac_y) * cg_pos / 100;
+    // MAC length & distance
+    window.panels[0].maclen = p.te_mac_y - p.le_mac_y;
+    window.panels[0].macdist = p.mac_x;
 
+	debug += "Panel 0"+"\n";
+	debug += "\tArea "+p.wingarea.toString()+"\n";
+	debug += "\tX "+   p.mac_x.toString()+"\n";
+	debug += "\tle_y "+p.le_mac_y.toString()+"\n";
+	debug += "\tte_y "+p.te_mac_y.toString()+"\n";
+	debug += "\n";
+		
     // Update UI
     if (window.systemunit == "metric") {
-        $('#area').val(    Math.round( (window.panels[0].wingarea/10000) * 100) / 100);
+        $('#area').val(    Math.round( (2*window.panels[0].wingarea/10000) * 100) / 100);
     } else {
-        $('#area').val(    Math.round( (window.panels[0].wingarea)       * 100) / 100);
+        $('#area').val(    Math.round( (2*window.panels[0].wingarea)       * 100) / 100);
     }
     $('#macdist').val( Math.round( window.panels[0].macdist * 100) / 100);
     $('#maclen').val(  Math.round( window.panels[0].maclen * 100) / 100);
     $('#cgdist').val(  Math.round( window.panels[0].cg_dist * 100) / 100);
+	//$('#debug').val( debug );
 
     return panels;
 }
@@ -260,11 +265,26 @@ function makeURL() {
 	return site+url; 
 }
 
+
+function shortURL(field, url_to_be_shorted) {	
+	$.ajax({
+	  url: "/php/short.php?addr="+encodeURIComponent(url_to_be_shorted),
+	  success: function(data) {
+	      if (data.substr(0, 7) == 'http://') {
+		      field.val(data);
+	      } else {
+		      field.val(url_to_be_shorted);
+	      }
+	  }
+	});
+}
+
+
 function draw_wing() {
     var panel_qty = strtoint($("#panelsqty").val());
     var panels = load_panels(panel_qty);
-    var canvas_max_width = 580;
-    var canvas_max_height = 300;
+    var canvas_max_width = 940;
+    var canvas_max_height = 400;
     var border_size = 20; 
     var canvas = document.getElementById('wingcanvas');
     if (canvas.getContext){
@@ -272,18 +292,18 @@ function draw_wing() {
 
         var i;
         var p = panels[0];
-        var w = p.span;
+        var w = p.span * 2;
         var h = Math.max(p.root, p.sweep+p.tipc, p.maxX-p.minX);
 
-        if (w > h) {
-            canvas_w = canvas_max_width;
-            zoom = (canvas_w - border_size*2) / w;
-            canvas_h = Math.round(h*zoom) + border_size*2;
-        } else {
-            canvas_h = canvas_max_height;
-            zoom = (canvas_h - border_size*2) / h;
-            canvas_w = Math.round(h*zoom) + border_size*2;
-        }
+		if ((w/h) > (canvas_max_width/canvas_max_height)) {
+			canvas_w = canvas_max_width;
+			zoom = (canvas_w - border_size*2) / w;
+			canvas_h = canvas_max_height; // canvas_h = Math.round(h*zoom) + border_size*2;
+		} else {
+			canvas_h = canvas_max_height;
+			zoom = (canvas_h - border_size*2) / h;
+			canvas_w = canvas_max_width; // Math.round(h*zoom) + border_size*2;			
+		}
 
         canvas.setAttribute("width", canvas_w);
         canvas.setAttribute("height", canvas_h);
@@ -292,41 +312,40 @@ function draw_wing() {
         ctx.lineWidth = 1;
         ctx.strokeRect(0, 0, canvas_w, canvas_h);
         ctx.save();
-        ctx.translate(border_size,border_size);
+        ctx.translate(canvas_w/2, border_size);
         ctx.scale(zoom,zoom);
         ctx.lineWidth = 2/zoom;
         ctx.strokeStyle = "#000";
-        ctx.translate(0,-p.minX);
+        trw = Math.max(p.span,(canvas_w/zoom)/2);
+        trh = -p.minX;
         ctx.save();
+        
+        // right side
         for(i=1;i<=panel_qty;i++) {
             var p = panels[i];
-            if (p.span > 0) {
-                draw_panel(ctx,p.span,p.sweep,p.root,p.tipc);
-                if (p.cg_dist != 0) {
-                    draw_cg(ctx,zoom,p,false);
-                }
-                ctx.translate(p.span,p.sweep);
+            draw_panel(ctx,p.span,p.sweep,p.root,p.tipc);
+            if ((p.span > 0) && (p.cg_dist != 0)) {
+                draw_cg(ctx,zoom,p,false);
             }
+            ctx.translate(p.span,p.sweep);
         }
+		ctx.restore();
+        ctx.save();
+        // left side
+        for(i=1;i<=panel_qty;i++) {
+            var p = panels[i];
+            draw_panel(ctx,-p.span,p.sweep,p.root,p.tipc);
+            ctx.translate(-p.span,p.sweep);
+        }                
         ctx.restore();
         draw_cg(ctx,zoom,panels[0],true);
         ctx.restore();
-
     }
     url = makeURL();
     $('#deeplinkurl').val(url);
-    $.ajax({
-      url: "/php/short.php?addr="+encodeURIComponent(url),
-      success: function(data) {
-	      if (data.substr(0, 7) == 'http://') {
-		      $('#publicurl').val(data);
-	      } else {
-		      $('#publicurl').val($('#deeplinkurl').val());
-	      }
-      }
-    });
-    // $('#publicurl').val($('#deeplinkurl').val());
+    shortURL($('#publicurl'),url);
 }
+
 
 function systemunits_to_metric(recalc) {
     var inch_value = 25.4;

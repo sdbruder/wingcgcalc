@@ -85,6 +85,12 @@ include('../php/i18n.php');
             } 
             ?>
             <div class="row">
+	            <div class="span16">
+	                <h2><? print _('Wing'); ?></h2>
+	                <canvas id="wingcanvas" width="940" height="300"></canvas>
+	            </div>
+            </div>
+            <div class="row">
                 <div class="span6">
                     <h2><? print _('Measures'); ?></h2>
                     <form id="measuresform" action="" class="" onsubmit="return false">
@@ -172,54 +178,49 @@ include('../php/i18n.php');
                                 </div>
                             </div><!-- /clearfix -->
                         </fieldset>
-<? for($p=2;$p<=6;$p++) {
-?>
-						<? if ($_GET['panelsqty'] >= $p) { ?>
-	                        <fieldset id="panel<? print $p; ?>" class="">
-                        <? } else { ?>
-	                        <fieldset id="panel<? print $p; ?>" class="hide">
-                        <? } ?>
-                            <legend><? printf( _('Panel %d'),$p); ?></legend>
-                            <div class="clearfix">
-                                <label for="panelspan<? print $p; ?>"><? print _('Panel span'); ?></label>
-                                <div class="input">
-                                    <div class="input-append">
-                                        <input class="medium redraw" id="panelspan<? print $p; ?>" name="panelspan<? print $p; ?>" size="10"    value="<?= $_GET["panelspan$p"] ?>" type="text"
-                                            rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm).'); ?>" data-original-title="<? print _('Panel Span'); ?>">
-                                        <span class="add-on small">mm</span>
-                                    </div>
-                                </div>
-                            </div><!-- /clearfix -->
-                            <div class="clearfix">
-                                <label for="chord<? print $p; ?>"><? print _('Tip chord'); ?></label>
-                                <div class="input">
-                                    <div class="input-append">
-                                        <input class="medium redraw" id="chord<? print $p; ?>" name="chord<? print $p; ?>" size="10" value="<?= $_GET["chord$p"] ?>" type="text"
-                                            rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
-                                        <span class="add-on small">mm</span>
-                                    </div>
-                                </div>
-                            </div><!-- /clearfix -->
-                            <div class="clearfix">
-                                <label for="sweep<? print $p; ?>"><? print _('Sweep'); ?></label>
-                                <div class="input">
-                                    <div class="input-append">
-                                        <input class="medium redraw" id="sweep<? print $p; ?>" name="sweep<? print $p; ?>" size="10" value="<?= $_GET["sweep$p"] ?>" type="text"
-                                            rel="popover" data-content="<? print _('For forward swept wings panels use negative values.'); ?>" data-original-title="<? print _('Sweep'); ?>">
-                                        <span class="add-on small">mm</span>
-                                    </div>
-                                </div>
-                            </div><!-- /clearfix -->
-                        </fieldset>
-<? } ?>
-
+						<? for($p=2;$p<=6;$p++) {
+						?>
+							<? if ($_GET['panelsqty'] >= $p) { ?>
+		                        <fieldset id="panel<? print $p; ?>" class="">
+	                        <? } else { ?>
+		                        <fieldset id="panel<? print $p; ?>" class="hide">
+	                        <? } ?>
+	                            <legend><? printf( _('Panel %d'),$p); ?></legend>
+	                            <div class="clearfix">
+	                                <label for="panelspan<? print $p; ?>"><? print _('Panel span'); ?></label>
+	                                <div class="input">
+	                                    <div class="input-append">
+	                                        <input class="medium redraw" id="panelspan<? print $p; ?>" name="panelspan<? print $p; ?>" size="10"    value="<?= $_GET["panelspan$p"] ?>" type="text"
+	                                            rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm).'); ?>" data-original-title="<? print _('Panel Span'); ?>">
+	                                        <span class="add-on small">mm</span>
+	                                    </div>
+	                                </div>
+	                            </div><!-- /clearfix -->
+	                            <div class="clearfix">
+	                                <label for="chord<? print $p; ?>"><? print _('Tip chord'); ?></label>
+	                                <div class="input">
+	                                    <div class="input-append">
+	                                        <input class="medium redraw" id="chord<? print $p; ?>" name="chord<? print $p; ?>" size="10" value="<?= $_GET["chord$p"] ?>" type="text"
+	                                            rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
+	                                        <span class="add-on small">mm</span>
+	                                    </div>
+	                                </div>
+	                            </div><!-- /clearfix -->
+	                            <div class="clearfix">
+	                                <label for="sweep<? print $p; ?>"><? print _('Sweep'); ?></label>
+	                                <div class="input">
+	                                    <div class="input-append">
+	                                        <input class="medium redraw" id="sweep<? print $p; ?>" name="sweep<? print $p; ?>" size="10" value="<?= $_GET["sweep$p"] ?>" type="text"
+	                                            rel="popover" data-content="<? print _('For forward swept wings panels use negative values.'); ?>" data-original-title="<? print _('Sweep'); ?>">
+	                                        <span class="add-on small">mm</span>
+	                                    </div>
+	                                </div>
+	                            </div><!-- /clearfix -->
+	                        </fieldset>
+						<? } ?>
                     </form>
                 </div>
                 <div class="span10">
-                    <div>
-                        <h2><? print _('Wing'); ?></h2>
-                        <canvas id="wingcanvas" width="0" height="0"></canvas>
-                    </div>
                     <div>
                         <h2><? print _('Results'); ?></h2>
                         <form id="resultsform" action="" class="">
@@ -267,6 +268,15 @@ include('../php/i18n.php');
 							            <input class="medium" id="publicurl" name="publicurl" size="300" type="text">
 								    </div>
 								</div><!-- /clearfix -->
+								<? /*
+								<div class="clearfix">
+								    <label for="debug"><? print _('Debug info'); ?></label>
+								    <div class="input">
+								        <textarea id="debug" name="debug" rows="10">
+								        </textarea>
+								    </div>
+								</div><!-- /clearfix --> 
+								*/ ?>								
                             </fieldset>
                         </form>
                     </div>
@@ -291,7 +301,8 @@ include('../php/i18n.php');
                     <ul>
 	                    <li><h4><? print _("v 1.4"); ?></h4>
 	                        <ul>
-	                            <li><? print _(""); ?></li>
+	                            <li><? print _("BUGFIX: the MAC calculation for multi-panel was wrong, corrected thanks to LaercioLMB from e-voo.com."); ?></li>
+	                            <li><? print _("New display code and html arrange in the page now shows the whole wing."); ?></li>
 	                        </ul>
 	                    </li>
 	                    <li><h4><? print _("v 1.3.1"); ?></h4>
@@ -336,7 +347,7 @@ include('../php/i18n.php');
             </div>
         </div>	
         <footer>
-            <p>&copy; Sergio Bruder 2011</p>
+            <p>&copy; Sergio Bruder 2011-2012</p>
         </footer>
     </div> <!-- /container -->
     <div id="noIE" class="modal hide fade">

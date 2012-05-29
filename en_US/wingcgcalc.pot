@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-05-23 17:57-0300\n"
+"POT-Creation-Date: 2012-05-29 13:51-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,135 +37,147 @@ msgstr ""
 msgid "WingCGCalc"
 msgstr ""
 
-#: index.php:78 en_US/index.php:78 en_US/index.php:89
+#: index.php:78 en_US/index.php:78 en_US/index.php:89 en_US/index.php:95
 msgid "Measures"
 msgstr ""
 
-#: index.php:83 en_US/index.php:83 en_US/index.php:94
+#: index.php:83 en_US/index.php:83 en_US/index.php:94 en_US/index.php:100
 msgid "Options"
 msgstr ""
 
-#: index.php:85 en_US/index.php:85 en_US/index.php:96
+#: index.php:85 en_US/index.php:85 en_US/index.php:96 en_US/index.php:102
 msgid "Unit System"
 msgstr ""
 
 #: index.php:87 en_US/index.php:87 en_US/index.php:99 en_US/index.php:106
+#: en_US/index.php:105 en_US/index.php:112
 msgid "Metric"
 msgstr ""
 
 #: index.php:88 en_US/index.php:88 en_US/index.php:100 en_US/index.php:107
+#: en_US/index.php:106 en_US/index.php:113
 msgid "Imperial"
 msgstr ""
 
 #: index.php:92 index.php:96 en_US/index.php:92 en_US/index.php:96
-#: en_US/index.php:116 en_US/index.php:120
+#: en_US/index.php:116 en_US/index.php:120 en_US/index.php:122
+#: en_US/index.php:126
 msgid "CG Position"
 msgstr ""
 
-#: index.php:96 en_US/index.php:96 en_US/index.php:120
+#: index.php:96 en_US/index.php:96 en_US/index.php:120 en_US/index.php:126
 msgid ""
 "For tailless wings, start with 15% for beginners going to 25% for experts. "
 "Trainers airplanes normally use 25-33%."
 msgstr ""
 
-#: index.php:99 en_US/index.php:99 en_US/index.php:123
+#: index.php:99 en_US/index.php:99 en_US/index.php:123 en_US/index.php:129
 #, php-format
 msgid "15% for beginners, 25% for experts, 25-33% for airplanes."
 msgstr ""
 
 #: index.php:115 index.php:160 en_US/index.php:115 en_US/index.php:160
-#: en_US/index.php:135 en_US/index.php:184
+#: en_US/index.php:135 en_US/index.php:184 en_US/index.php:141
+#: en_US/index.php:190
 msgid "Panel span"
 msgstr ""
 
 #: index.php:119 index.php:164 en_US/index.php:119 en_US/index.php:164
-#: en_US/index.php:139 en_US/index.php:188
+#: en_US/index.php:139 en_US/index.php:188 en_US/index.php:145
+#: en_US/index.php:194
 msgid ""
 "Span of this panel in the semiwing (Ex: If your wing has 1200mm span and "
 "only one panel, use 600mm)."
 msgstr ""
 
 #: index.php:119 index.php:164 en_US/index.php:119 en_US/index.php:164
-#: en_US/index.php:139 en_US/index.php:188
+#: en_US/index.php:139 en_US/index.php:188 en_US/index.php:145
+#: en_US/index.php:194
 msgid "Panel Span"
 msgstr ""
 
-#: index.php:125 en_US/index.php:125 en_US/index.php:145
+#: index.php:125 en_US/index.php:125 en_US/index.php:145 en_US/index.php:151
 msgid "Root chord"
 msgstr ""
 
-#: index.php:129 en_US/index.php:129 en_US/index.php:149
+#: index.php:129 en_US/index.php:129 en_US/index.php:149 en_US/index.php:155
 msgid "Chord in the root of this panel"
 msgstr ""
 
-#: index.php:129 en_US/index.php:129 en_US/index.php:149
+#: index.php:129 en_US/index.php:129 en_US/index.php:149 en_US/index.php:155
 msgid "Root Chord"
 msgstr ""
 
 #: index.php:135 index.php:170 en_US/index.php:135 en_US/index.php:170
-#: en_US/index.php:155 en_US/index.php:194
+#: en_US/index.php:155 en_US/index.php:194 en_US/index.php:161
+#: en_US/index.php:200
 msgid "Tip chord"
 msgstr ""
 
 #: index.php:139 index.php:174 en_US/index.php:139 en_US/index.php:174
-#: en_US/index.php:159 en_US/index.php:198
+#: en_US/index.php:159 en_US/index.php:198 en_US/index.php:165
+#: en_US/index.php:204
 msgid "Chord in the tip of this panel"
 msgstr ""
 
 #: index.php:139 index.php:174 en_US/index.php:139 en_US/index.php:174
-#: en_US/index.php:159 en_US/index.php:198
+#: en_US/index.php:159 en_US/index.php:198 en_US/index.php:165
+#: en_US/index.php:204
 msgid "Tip Chord"
 msgstr ""
 
 #: index.php:145 index.php:149 index.php:180 index.php:184 en_US/index.php:145
 #: en_US/index.php:149 en_US/index.php:180 en_US/index.php:184
 #: en_US/index.php:165 en_US/index.php:169 en_US/index.php:204
-#: en_US/index.php:208
+#: en_US/index.php:208 en_US/index.php:171 en_US/index.php:175
+#: en_US/index.php:210 en_US/index.php:214
 msgid "Sweep"
 msgstr ""
 
-#: index.php:149 en_US/index.php:149 en_US/index.php:169
+#: index.php:149 en_US/index.php:149 en_US/index.php:169 en_US/index.php:175
 msgid "For forward swept wings use negative values."
 msgstr ""
 
-#: index.php:158 en_US/index.php:158 en_US/index.php:182
+#: index.php:158 en_US/index.php:158 en_US/index.php:182 en_US/index.php:188
 #, php-format
 msgid "Panel %d"
 msgstr ""
 
-#: index.php:184 en_US/index.php:184 en_US/index.php:208
+#: index.php:184 en_US/index.php:184 en_US/index.php:208 en_US/index.php:214
 msgid "For forward swept wings panels use negative values."
 msgstr ""
 
-#: index.php:196 en_US/index.php:196 en_US/index.php:220
+#: index.php:196 en_US/index.php:196 en_US/index.php:220 en_US/index.php:89
 msgid "Wing"
 msgstr ""
 
-#: index.php:200 en_US/index.php:200 en_US/index.php:224
+#: index.php:200 en_US/index.php:200 en_US/index.php:224 en_US/index.php:225
 msgid "Results"
 msgstr ""
 
-#: index.php:204 en_US/index.php:204 en_US/index.php:229
+#: index.php:204 en_US/index.php:204 en_US/index.php:229 en_US/index.php:230
 msgid "Wing Area"
 msgstr ""
 
-#: index.php:213 en_US/index.php:213 en_US/index.php:238
+#: index.php:213 en_US/index.php:213 en_US/index.php:238 en_US/index.php:239
 msgid "MAC Distance"
 msgstr ""
 
-#: index.php:222 en_US/index.php:222 en_US/index.php:247
+#: index.php:222 en_US/index.php:222 en_US/index.php:247 en_US/index.php:248
 msgid "MAC Length"
 msgstr ""
 
-#: index.php:231 en_US/index.php:231 en_US/index.php:256
+#: index.php:231 en_US/index.php:231 en_US/index.php:256 en_US/index.php:257
 msgid "CG"
 msgstr ""
 
-#: index.php:246 en_US/index.php:246 en_US/index.php:277
+#: index.php:246 en_US/index.php:246 en_US/index.php:277 en_US/index.php:285
+#: en_US/index.php:287
 msgid "About"
 msgstr ""
 
-#: index.php:247 en_US/index.php:247 en_US/index.php:278
+#: index.php:247 en_US/index.php:247 en_US/index.php:278 en_US/index.php:286
+#: en_US/index.php:288
 msgid ""
 "Ive used the excelent work of z80 (<a href=\"http://fwcg.3dzone.dk/\">http://"
 "fwcg.3dzone.dk/</a>) in the past, but the limitations of one single panel "
@@ -175,7 +187,8 @@ msgid ""
 "sweep and multiple panels."
 msgstr ""
 
-#: index.php:248 en_US/index.php:248 en_US/index.php:279
+#: index.php:248 en_US/index.php:248 en_US/index.php:279 en_US/index.php:287
+#: en_US/index.php:289
 msgid ""
 "WingCGCalc is a flying wing CG calculator flexible enough to calculate "
 "complex wings, with multiple panels and forward swept. As the percentual "
@@ -184,86 +197,105 @@ msgid ""
 "right amount."
 msgstr ""
 
-#: index.php:250 en_US/index.php:250 en_US/index.php:281
+#: index.php:250 en_US/index.php:250 en_US/index.php:281 en_US/index.php:289
+#: en_US/index.php:291
 msgid "TODO"
 msgstr ""
 
-#: index.php:252 en_US/index.php:252 en_US/index.php:283
+#: index.php:252 en_US/index.php:252 en_US/index.php:283 en_US/index.php:291
+#: en_US/index.php:293
 msgid "Deep-link for wings designs"
 msgstr ""
 
-#: index.php:253 en_US/index.php:253 en_US/index.php:284
+#: index.php:253 en_US/index.php:253 en_US/index.php:284 en_US/index.php:293
+#: en_US/index.php:295
 msgid "Save option to build a database of wings designs"
 msgstr ""
 
-#: index.php:254 en_US/index.php:254 en_US/index.php:285
+#: index.php:254 en_US/index.php:254 en_US/index.php:285 en_US/index.php:294
+#: en_US/index.php:296
 msgid ""
 "Some helper drawings exemplifying in the wing image what is the current "
 "measure been edited."
 msgstr ""
 
-#: index.php:255 en_US/index.php:255 en_US/index.php:286
+#: index.php:255 en_US/index.php:255 en_US/index.php:286 en_US/index.php:295
+#: en_US/index.php:297
 msgid "Any other ideias? Please contact me."
 msgstr ""
 
-#: index.php:258 en_US/index.php:258 en_US/index.php:289
+#: index.php:258 en_US/index.php:258 en_US/index.php:289 en_US/index.php:298
+#: en_US/index.php:300
 msgid "History"
 msgstr ""
 
 #: index.php:260 en_US/index.php:267 en_US/index.php:303 en_US/index.php:309
+#: en_US/index.php:322 en_US/index.php:323 en_US/index.php:325
 msgid "v 1.2"
 msgstr ""
 
 #: index.php:262 en_US/index.php:269 en_US/index.php:305 en_US/index.php:311
+#: en_US/index.php:324 en_US/index.php:325 en_US/index.php:327
 msgid "Added About and History in end of the page."
 msgstr ""
 
 #: index.php:263 en_US/index.php:270 en_US/index.php:306 en_US/index.php:312
+#: en_US/index.php:325 en_US/index.php:326 en_US/index.php:328
 msgid ""
 "Proper internationalization with gettext support. If you want wingcgcalc in "
 "your language and can contribute with the translation, please contact me."
 msgstr ""
 
 #: index.php:264 en_US/index.php:271 en_US/index.php:307 en_US/index.php:313
+#: en_US/index.php:326 en_US/index.php:327 en_US/index.php:329
 msgid ""
 "Options moved to the start of the measures forms, a few users didnt found "
 "the CG % with it the end."
 msgstr ""
 
 #: index.php:265 en_US/index.php:272 en_US/index.php:308 en_US/index.php:314
+#: en_US/index.php:327 en_US/index.php:328 en_US/index.php:330
 msgid "Popups implemented with little helper texts for each entry."
 msgstr ""
 
 #: index.php:268 en_US/index.php:275 en_US/index.php:311 en_US/index.php:317
+#: en_US/index.php:330 en_US/index.php:331 en_US/index.php:333
 msgid "v 1.1"
 msgstr ""
 
 #: index.php:270 en_US/index.php:277 en_US/index.php:313 en_US/index.php:319
+#: en_US/index.php:332 en_US/index.php:333 en_US/index.php:335
 msgid "Brazilian Portuguese translation added."
 msgstr ""
 
 #: index.php:271 en_US/index.php:278 en_US/index.php:314 en_US/index.php:320
+#: en_US/index.php:333 en_US/index.php:334 en_US/index.php:336
 msgid "Unit system switch between metric and imperial systems."
 msgstr ""
 
 #: index.php:272 en_US/index.php:279 en_US/index.php:315 en_US/index.php:321
+#: en_US/index.php:334 en_US/index.php:335 en_US/index.php:337
 msgid ""
 "A little less broken with Internet Explorers (still without canvas support)."
 msgstr ""
 
 #: index.php:275 en_US/index.php:282 en_US/index.php:318 en_US/index.php:324
+#: en_US/index.php:337 en_US/index.php:338 en_US/index.php:340
 msgid "v 1.0"
 msgstr ""
 
 #: index.php:277 en_US/index.php:284 en_US/index.php:320 en_US/index.php:326
+#: en_US/index.php:339 en_US/index.php:340 en_US/index.php:342
 msgid "Initial version."
 msgstr ""
 
 #: index.php:291 en_US/index.php:298 en_US/index.php:334 en_US/index.php:340
+#: en_US/index.php:353 en_US/index.php:354 en_US/index.php:356
 msgid "Internet Explorer not supported"
 msgstr ""
 
 #: index.php:294 en_US/index.php:301 en_US/index.php:337 en_US/index.php:343
+#: en_US/index.php:356 en_US/index.php:357 en_US/index.php:359
 msgid ""
 "WingCGCalc uses a great deal of HTML5, javascript and canvas support, which "
 "Internet Explorer currently cant support (there is no CANVAS in Internet "
@@ -271,38 +303,72 @@ msgid ""
 msgstr ""
 
 #: index.php:297 en_US/index.php:304 en_US/index.php:340 en_US/index.php:346
+#: en_US/index.php:359 en_US/index.php:360 en_US/index.php:362
 msgid "Ok"
 msgstr ""
 
 #: en_US/index.php:260 en_US/index.php:296 en_US/index.php:302
+#: en_US/index.php:315 en_US/index.php:316 en_US/index.php:318
 msgid "v 1.2.1"
 msgstr ""
 
 #: en_US/index.php:262 en_US/index.php:298 en_US/index.php:304
+#: en_US/index.php:317 en_US/index.php:318 en_US/index.php:320
 msgid "i18n bugfixing."
 msgstr ""
 
 #: en_US/index.php:263 en_US/index.php:299 en_US/index.php:305
+#: en_US/index.php:318 en_US/index.php:319 en_US/index.php:321
 msgid "A proper build system, Makefile and so on."
 msgstr ""
 
-#: en_US/index.php:265
+#: en_US/index.php:265 en_US/index.php:266
 msgid "URL"
 msgstr ""
 
-#: en_US/index.php:291 en_US/index.php:297
+#: en_US/index.php:291 en_US/index.php:297 en_US/index.php:310
+#: en_US/index.php:311 en_US/index.php:313
 msgid "v 1.3"
 msgstr ""
 
-#: en_US/index.php:293 en_US/index.php:299
+#: en_US/index.php:293 en_US/index.php:299 en_US/index.php:312
+#: en_US/index.php:313 en_US/index.php:315
 msgid ""
 "big rework to allow deep linking to arbitrary wings with bit.ly url shorting."
 msgstr ""
 
-#: en_US/index.php:291
+#: en_US/index.php:291 en_US/index.php:305 en_US/index.php:306
+#: en_US/index.php:308
 msgid "v 1.3.1"
 msgstr ""
 
-#: en_US/index.php:293
+#: en_US/index.php:293 en_US/index.php:307 en_US/index.php:308
+#: en_US/index.php:310
 msgid "if the url shortening fails in any way use the full URL instead."
+msgstr ""
+
+#: en_US/index.php:272
+msgid "Debug info"
+msgstr ""
+
+#: en_US/index.php:292 en_US/index.php:294
+msgid "Better wing drawings: whole wing and measuring in the canvas"
+msgstr ""
+
+#: en_US/index.php:300 en_US/index.php:302
+msgid "v 1.4"
+msgstr ""
+
+#: en_US/index.php:302
+msgid "BUGFIX: the MAC calculation for multi-panel was wrong, corrected."
+msgstr ""
+
+#: en_US/index.php:303 en_US/index.php:305
+msgid "New display code and html arrange in the page now shows the whole wing."
+msgstr ""
+
+#: en_US/index.php:302 en_US/index.php:304
+msgid ""
+"BUGFIX: the MAC calculation for multi-panel was wrong, corrected thanks to "
+"LaercioLMB from e-voo.com."
 msgstr ""
