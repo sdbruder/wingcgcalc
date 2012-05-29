@@ -22,7 +22,7 @@ include('../php/i18n.php');
     <script src="../js/bootstrap-twipsy.js"></script>
     <script src="../js/bootstrap-popover.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
-    <script src="../js/wingcgcalc-1.4.js"></script>
+    <script src="../js/wingcgcalc.js"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-27285625-1']);
@@ -40,7 +40,7 @@ include('../php/i18n.php');
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">WingCGCalc v1.4</a>
+          <a class="brand" href="#">WingCGCalc v1.5</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
@@ -291,14 +291,21 @@ include('../php/i18n.php');
                     <h2><? print _('TODO'); ?></h2>
                     <ul>
                         <li><strike><? print _("Deep-link for wings designs"); ?></strike></li>
-                        <li><? print _("Better wing drawings: whole wing and measuring in the canvas"); ?></li>
+                        <li><strike><? print _("Better wing drawings: whole wing and measuring in the canvas"); ?></strike></li>
+                        <li><? print _("Better wing drawings 2, the mission: measuring in the canvas"); ?></li>
                         <li><? print _("Save option to build a database of wings designs"); ?></li>
                         <li><? print _("Some helper drawings exemplifying in the wing image what is the current measure been edited."); ?></li>
+                        <li><? print _("No more DOS in bit.ly, manual URL shorting."); ?></li>
                         <li><? print _("Any other ideias? Please contact me."); ?></li>
                     </ul>
 
                     <h2><? print _('History'); ?></h2>
                     <ul>
+	                    <li><h4><? print _("v 1.5"); ?></h4>
+	                        <ul>
+	                            <li><? print _(""); ?></li>
+	                        </ul>
+	                    </li>
 	                    <li><h4><? print _("v 1.4"); ?></h4>
 	                        <ul>
 	                            <li><? print _("BUGFIX: the MAC calculation for multi-panel was wrong, corrected thanks to LaercioLMB from e-voo.com."); ?></li>
