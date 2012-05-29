@@ -235,6 +235,9 @@ function load_panels(qty) {
     $('#cgdist').val(  Math.round( window.panels[0].cg_dist * 100) / 100);
 	//$('#debug').val( debug );
 
+	// angle = math.atan(sweep/span) * (180/math.PI)
+	// sweep  = math.tan( angle * math.PI / 180 ) * span
+
     return panels;
 }
 
@@ -347,10 +350,16 @@ function draw_wing() {
         ctx.restore();
         draw_cg(ctx,zoom,panels[0],true);
         ctx.restore();
-    }
-    url = makeURL();
-    $('#deeplinkurl').val(url);
-    shortURL($('#publicurl'),url);
+    } 
+    $('#deeplinkurl').val( makeURL() );
+    $('#publicurl').val("");
+    $('#btn_shortit').removeClass('disabled');
+}
+
+
+function shortit() {
+	shortURL($('#publicurl'),$('#deeplinkurl').val());
+	$('#btn_shortit').addClass('disabled');
 }
 
 
@@ -435,6 +444,7 @@ function wingcgcalc_setup() {
     $("#calc").click(function(event){           draw_wing();                event.preventDefault();});
     $("#btn_metric").click(function(event){     systemunits_to_metric();    event.preventDefault();});
     $("#btn_imperial").click(function(event){   systemunits_to_imperial();  event.preventDefault();});
+	$("#btn_shortit").click(function(event){    shortit();                  event.preventDefault();});
     $(".redraw").change(function(){             draw_wing(); });
 
     // global variables setup

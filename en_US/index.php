@@ -262,10 +262,12 @@ include('../php/i18n.php');
                                         </div>
                                     </div>
                                 </div><!-- /clearfix -->
+                             
 								<div class="clearfix">
-								    <label for="publicurl"><? print _('URL'); ?></label>
+								    <label for="publicurl"><? print _('Deep linking URL'); ?></label>
 								    <div class="input">
 							            <input class="medium" id="publicurl" name="publicurl" size="300" type="text">
+	                                	<button id="btn_shortit" class="btn primary"><? print _('Short it!'); ?></button>             
 								    </div>
 								</div><!-- /clearfix -->
 								<? /*
