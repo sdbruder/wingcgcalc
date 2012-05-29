@@ -262,6 +262,16 @@ include('../php/i18n.php');
                                         </div>
                                     </div>
                                 </div><!-- /clearfix -->
+                                
+                                <div class="clearfix">
+                                    <label for="btn_shortit"><? print _('Deep linking URL'); ?></label>
+                                    <div class="input">
+	                                	<button id="btn_shortit" class="btn primary"><? print _('Link to my wing!'); ?></button>             
+                                	</div>
+                                </div><!-- /clearfix -->
+                                
+                                
+                                
 								<div class="clearfix">
 								    <label for="publicurl"><? print _('URL'); ?></label>
 								    <div class="input">
