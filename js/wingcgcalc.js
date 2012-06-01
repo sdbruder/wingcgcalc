@@ -105,6 +105,12 @@ function strtofloat(str) {
     return f;
 }
 
+
+function fieldtofloat(field) {
+    return strtofloat(field.val());
+}
+
+
 function strtoint(str) {
     var i = parseInt(str);
     if (isNaN(i)) {
@@ -112,6 +118,7 @@ function strtoint(str) {
     }
     return i;
 }
+
 
 function load_panels(qty) {
     var i,j;
@@ -147,7 +154,7 @@ function load_panels(qty) {
     window.panels[0].root = panels[1].root;   // first chord
     window.panels[0].tipc = panels[qty].tipc; // last chord
 
-	debug = "";
+    debug = "";
     var cg_pos = strtofloat($("#cgpos").val());
     for(i=1;i<=qty;i++) {
         p = window.panels[i];
@@ -180,12 +187,12 @@ function load_panels(qty) {
             window.panels[i].maclen = p.te_mac_y - p.le_mac_y;
             window.panels[i].macdist = p.mac_x;
 
-			debug += "Panel "+i.toString()+"\n";
-			debug += "\tArea "+p.wingarea.toString()+"\n";
-			debug += "\tX "+   p.mac_x.toString()+"\n";
-			debug += "\tle_y "+p.le_mac_y.toString()+"\n";
-			debug += "\tte_y "+p.te_mac_y.toString()+"\n";
-			debug += "\n";
+            debug += "Panel "+i.toString()+"\n";
+            debug += "\tArea "+p.wingarea.toString()+"\n";
+            debug += "\tX "+   p.mac_x.toString()+"\n";
+            debug += "\tle_y "+p.le_mac_y.toString()+"\n";
+            debug += "\tte_y "+p.te_mac_y.toString()+"\n";
+            debug += "\n";
         }
     }
 
@@ -217,13 +224,13 @@ function load_panels(qty) {
     window.panels[0].maclen = p.te_mac_y - p.le_mac_y;
     window.panels[0].macdist = p.mac_x;
 
-	debug += "Panel 0"+"\n";
-	debug += "\tArea "+p.wingarea.toString()+"\n";
-	debug += "\tX "+   p.mac_x.toString()+"\n";
-	debug += "\tle_y "+p.le_mac_y.toString()+"\n";
-	debug += "\tte_y "+p.te_mac_y.toString()+"\n";
-	debug += "\n";
-		
+    debug += "Panel 0"+"\n";
+    debug += "\tArea "+p.wingarea.toString()+"\n";
+    debug += "\tX "+   p.mac_x.toString()+"\n";
+    debug += "\tle_y "+p.le_mac_y.toString()+"\n";
+    debug += "\tte_y "+p.te_mac_y.toString()+"\n";
+    debug += "\n";
+        
     // Update UI
     if (window.systemunit == "metric") {
         $('#area').val(    Math.round( (2*window.panels[0].wingarea/10000) * 100) / 100);
@@ -233,60 +240,75 @@ function load_panels(qty) {
     $('#macdist').val( Math.round( window.panels[0].macdist * 100) / 100);
     $('#maclen').val(  Math.round( window.panels[0].maclen * 100) / 100);
     $('#cgdist').val(  Math.round( window.panels[0].cg_dist * 100) / 100);
-	//$('#debug').val( debug );
-
-	// angle = math.atan(sweep/span) * (180/math.PI)
-	// sweep  = math.tan( angle * math.PI / 180 ) * span
+    //$('#debug').val( debug );
 
     return panels;
 }
 
 function mkURIcomponent(id) {
-	value = $('#'+id).val();
-	if (value.length > 0) {
-		ret = id+'=' + encodeURIComponent(value) + '&';
-	} else {
-		ret = '';
-	}
-	return ret;
+    value = $('#'+id).val();
+    if (value.length > 0) {
+        ret = id+'=' + encodeURIComponent(value) + '&';
+    } else {
+        ret = '';
+    }
+    return ret;
 }
 
 function makeURL() {
-	var url = "?";
-	url = url + mkURIcomponent('unitsystem');
-	url = url + mkURIcomponent('panelsqty');
-	url = url + mkURIcomponent('cgpos');
-	url = url + mkURIcomponent('chord0');
-	for(i=1;i<=6;i++) {
-	    p = i.toString();
-		url = url + mkURIcomponent('panelspan'+p);
-		url = url + mkURIcomponent('chord'+p);
-		url = url + mkURIcomponent('sweep'+p);
-	}
-	box = window.document.location;
-	site = box.protocol + "//" + box.hostname + box.pathname;
-	/*
-	if (typeof(box.origin)=='undefined') {
-		tokens = box.toString.split('?', 2);
-		site = tokens[0];
-	} else {
-		site = box.origin + box.pathname;	
-	}*/
-	return site+url; 
+    var url = "?";
+    url = url + mkURIcomponent('unitsystem');
+    url = url + mkURIcomponent('panelsqty');
+    url = url + mkURIcomponent('cgpos');
+    url = url + mkURIcomponent('chord0');
+    for(i=1;i<=6;i++) {
+        p = i.toString();
+        url = url + mkURIcomponent('panelspan'+p);
+        url = url + mkURIcomponent('chord'+p);
+        url = url + mkURIcomponent('sweep'+p);
+    }
+    box = window.document.location;
+    site = box.protocol + "//" + box.hostname + box.pathname;
+    /*
+    if (typeof(box.origin)=='undefined') {
+        tokens = box.toString.split('?', 2);
+        site = tokens[0];
+    } else {
+        site = box.origin + box.pathname;	
+    }*/
+    return site+url; 
 }
 
 
 function shortURL(field, url_to_be_shorted) {	
-	$.ajax({
-	  url: "/php/short.php?addr="+encodeURIComponent(url_to_be_shorted),
-	  success: function(data) {
-	      if (data.substr(0, 7) == 'http://') {
-		      field.val(data);
-	      } else {
-		      field.val(url_to_be_shorted);
-	      }
-	  }
-	});
+    $.ajax({
+      url: "/php/short.php?addr="+encodeURIComponent(url_to_be_shorted),
+      success: function(data) {
+          if (data.substr(0, 7) == 'http://') {
+              field.val(data);
+          } else {
+              field.val(url_to_be_shorted);
+          }
+      }
+    });
+}
+
+
+function angle2sweep(panelnumber) {
+    // sweep  = math.tan( angle * math.PI / 180 ) * span
+    angle = fieldtofloat($('#angle'+panelnumber)); 
+    span  = fieldtofloat($('#panelspan'+panelnumber ));
+    sw = Math.tan( angle * Math.PI / 180 ) * span;
+    $('#sweep'+panelnumber).val( Math.round( 100 * sw ) / 100);
+}
+
+
+function sweep2angle(panelnumber) {
+    // angle = math.atan(sweep/span) * (180/math.PI)
+    sweep = fieldtofloat($('#sweep'+panelnumber));
+    span  = fieldtofloat($('#panelspan'+panelnumber));
+    an = Math.atan( sweep/span ) * (180 / Math.PI); 
+    $('#angle'+panelnumber).val( Math.round( 100 * an ) / 100);
 }
 
 
@@ -305,15 +327,15 @@ function draw_wing() {
         var w = p.span * 2;
         var h = Math.max(p.root, p.sweep+p.tipc, p.maxX-p.minX);
 
-		if ((w/h) > (canvas_max_width/canvas_max_height)) {
-			canvas_w = canvas_max_width;
-			zoom = (canvas_w - border_size*2) / w;
-			canvas_h = canvas_max_height; // canvas_h = Math.round(h*zoom) + border_size*2;
-		} else {
-			canvas_h = canvas_max_height;
-			zoom = (canvas_h - border_size*2) / h;
-			canvas_w = canvas_max_width; // Math.round(h*zoom) + border_size*2;			
-		}
+        if ((w/h) > (canvas_max_width/canvas_max_height)) {
+            canvas_w = canvas_max_width;
+            zoom = (canvas_w - border_size*2) / w;
+            canvas_h = canvas_max_height; // canvas_h = Math.round(h*zoom) + border_size*2;
+        } else {
+            canvas_h = canvas_max_height;
+            zoom = (canvas_h - border_size*2) / h;
+            canvas_w = canvas_max_width; // Math.round(h*zoom) + border_size*2;			
+        }
 
         canvas.setAttribute("width", canvas_w);
         canvas.setAttribute("height", canvas_h);
@@ -339,7 +361,7 @@ function draw_wing() {
             }
             ctx.translate(p.span,p.sweep);
         }
-		ctx.restore();
+        ctx.restore();
         ctx.save();
         // left side
         for(i=1;i<=panel_qty;i++) {
@@ -358,8 +380,8 @@ function draw_wing() {
 
 
 function shortit() {
-	shortURL($('#publicurl'),$('#deeplinkurl').val());
-	$('#btn_shortit').addClass('disabled');
+    shortURL($('#publicurl'),$('#deeplinkurl').val());
+    $('#btn_shortit').addClass('disabled');
 }
 
 
@@ -374,15 +396,15 @@ function systemunits_to_metric(recalc) {
         $("#btn_imperial").removeClass("disabled");
         $("#btn_imperial").removeClass("primary");
 
-		if (recalc) {
-	        $("#chord0").val( Math.round( 100 * strtofloat($("#chord0").val()) * inch_value ) / 100);
-	        for(i=1;i<=6;i++) {
-	            p = i.toString();
-	            $("#panelspan"+p).val( Math.round( 100 * strtofloat($("#panelspan"+p).val()) * inch_value ) / 100);
-	            $("#chord"+p).val(     Math.round( 100 * strtofloat($("#chord"+p).val())     * inch_value ) / 100);
-	            $("#sweep"+p).val(     Math.round( 100 * strtofloat($("#sweep"+p).val())     * inch_value ) / 100);
-	        }
-		}
+        if (recalc) {
+            $("#chord0").val( Math.round( 100 * strtofloat($("#chord0").val()) * inch_value ) / 100);
+            for(i=1;i<=6;i++) {
+                p = i.toString();
+                $("#panelspan"+p).val( Math.round( 100 * strtofloat($("#panelspan"+p).val()) * inch_value ) / 100);
+                $("#chord"+p).val(     Math.round( 100 * strtofloat($("#chord"+p).val())     * inch_value ) / 100);
+                $("#sweep"+p).val(     Math.round( 100 * strtofloat($("#sweep"+p).val())     * inch_value ) / 100);
+            }
+        }
         $("#areaunit").removeClass("add-on");
         $("#cgunit").removeClass("add-on");
         $(".add-on").replaceWith('<span class="add-on small">mm</span>');
@@ -406,14 +428,14 @@ function systemunits_to_imperial(recalc) {
         $("#btn_metric").removeClass("disabled");
         $("#btn_metric").removeClass("primary");
 
-		if (recalc) {
-	        $("#chord0").val( Math.round( 100 * strtofloat($("#chord0").val()) / inch_value ) / 100);
-	        for(i=1;i<=6;i++) {
-	            p = i.toString();
-	            $("#panelspan"+p).val( Math.round( 100 * strtofloat($("#panelspan"+p).val()) / inch_value ) / 100);
-	            $("#chord"+p).val(     Math.round( 100 * strtofloat($("#chord"+p).val())     / inch_value ) / 100);
-	            $("#sweep"+p).val(     Math.round( 100 * strtofloat($("#sweep"+p).val())     / inch_value ) / 100);
-	        }
+        if (recalc) {
+            $("#chord0").val( Math.round( 100 * strtofloat($("#chord0").val()) / inch_value ) / 100);
+            for(i=1;i<=6;i++) {
+                p = i.toString();
+                $("#panelspan"+p).val( Math.round( 100 * strtofloat($("#panelspan"+p).val()) / inch_value ) / 100);
+                $("#chord"+p).val(     Math.round( 100 * strtofloat($("#chord"+p).val())     / inch_value ) / 100);
+                $("#sweep"+p).val(     Math.round( 100 * strtofloat($("#sweep"+p).val())     / inch_value ) / 100);
+            }
         }
 
         $("#areaunit").removeClass("add-on");
@@ -430,9 +452,9 @@ function systemunits_to_imperial(recalc) {
 
 
 function URLSelectAll() {
-	url = $('#publicurl');
-	url.focus();
-	url.select();
+    url = $('#publicurl');
+    url.focus();
+    url.select();
 }
 
 
@@ -444,9 +466,11 @@ function wingcgcalc_setup() {
     $("#calc").click(function(event){           draw_wing();                event.preventDefault();});
     $("#btn_metric").click(function(event){     systemunits_to_metric();    event.preventDefault();});
     $("#btn_imperial").click(function(event){   systemunits_to_imperial();  event.preventDefault();});
-	$("#btn_shortit").click(function(event){    shortit();                  event.preventDefault();});
+    $("#btn_shortit").click(function(event){    shortit();                  event.preventDefault();});
     $(".redraw").change(function(){             draw_wing(); });
-
+    $(".recalcsweep").change(function(){        angle2sweep($(this).attr('panel')); draw_wing(); });
+    $(".recalcangle").change(function(){        sweep2angle($(this).attr('panel')); draw_wing(); });
+    
     // global variables setup
     var unitSys = $("#unitsystem");
     window.systemunit = unitSys.val();

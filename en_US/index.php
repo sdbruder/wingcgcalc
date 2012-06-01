@@ -82,6 +82,7 @@ include('../php/i18n.php');
             	$_GET['chord0'] = 340;
             	$_GET['chord1'] = 180;
             	$_GET['sweep1'] = 300;
+            	$_GET['angle1'] = 26.57;
             } 
             ?>
             <div class="row">
@@ -141,8 +142,8 @@ include('../php/i18n.php');
                                 <label for="panelspan1"><? print _('Panel span'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="panelspan1" name="panelspan1" size="10" type="text" value="<?= $_GET['panelspan1'] ?>"
-                                            rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm).'); ?>" data-original-title="<? print _('Panel Span'); ?>">
+                                        <input class="medium redraw recalcangle" id="panelspan1" panel="1" name="panelspan1" size="10" type="text" value="<?= $_GET['panelspan1'] ?>"
+                                            rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm). Angle will be recalculated as needed.'); ?>" data-original-title="<? print _('Panel Span'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
                                 </div>
@@ -151,7 +152,7 @@ include('../php/i18n.php');
                                 <label for="chord0"><? print _('Root chord'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="chord0" name="chord0" size="10" type="text" value="<?= $_GET['chord0'] ?>"
+                                        <input class="medium redraw" id="chord0" panel="1" name="chord0" size="10" type="text" value="<?= $_GET['chord0'] ?>"
                                             rel="popover" data-content="<? print _('Chord in the root of this panel'); ?>" data-original-title="<? print _('Root Chord'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -161,7 +162,7 @@ include('../php/i18n.php');
                                 <label for="chord1"><? print _('Tip chord'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="chord1" name="chord1" size="10" type="text" value="<?= $_GET['chord1'] ?>"
+                                        <input class="medium redraw" id="chord1" panel="1" name="chord1" size="10" type="text" value="<?= $_GET['chord1'] ?>"
                                             rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
@@ -171,12 +172,22 @@ include('../php/i18n.php');
                                 <label for="sweep1"><? print _('Sweep'); ?></label>
                                 <div class="input">
                                     <div class="input-append">
-                                        <input class="medium redraw" id="sweep1" name="sweep1" size="10" type="text" value="<?= $_GET['sweep1'] ?>"
-                                            rel="popover" data-content="<? print _('For forward swept wings use negative values.'); ?>" data-original-title="<? print _('Sweep'); ?>">
+                                        <input class="medium redraw recalcangle" id="sweep1" panel="1" name="sweep1" size="10" type="text" value="<?= $_GET['sweep1'] ?>"
+                                            rel="popover" data-content="<? print _('For forward swept wings use negative values. Enter the sweep value to calculate the angle and vice-versa.'); ?>" data-original-title="<? print _('Sweep'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
                                 </div>
                             </div><!-- /clearfix -->
+							<div class="clearfix">
+							    <label for="angle1"><? print _('Angle'); ?></label>
+							    <div class="input">
+							        <div class="input-append">
+							            <input class="medium redraw recalcsweep" id="angle1" panel="1" name="angle1" size="10" type="text" value="<?= $_GET['angle1'] ?>"
+							                rel="popover" data-content="<? print _('For forward swept wings use negative values. Enter the angle in degrees to calculate the sweep value and vice-versa.'); ?>" data-original-title="<? print _('Angle'); ?>">
+							            <span class="add-on small">&deg;</span>
+							        </div>
+							    </div>
+							</div><!-- /clearfix -->
                         </fieldset>
 						<? for($p=2;$p<=6;$p++) {
 						?>
@@ -190,8 +201,8 @@ include('../php/i18n.php');
 	                                <label for="panelspan<? print $p; ?>"><? print _('Panel span'); ?></label>
 	                                <div class="input">
 	                                    <div class="input-append">
-	                                        <input class="medium redraw" id="panelspan<? print $p; ?>" name="panelspan<? print $p; ?>" size="10"    value="<?= $_GET["panelspan$p"] ?>" type="text"
-	                                            rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm).'); ?>" data-original-title="<? print _('Panel Span'); ?>">
+	                                        <input class="medium redraw recalcangle" id="panelspan<?= $p; ?>" panel="<?= $p; ?>" name="panelspan<?= $p; ?>" size="10"    value="<?= $_GET["panelspan$p"] ?>" type="text"
+	                                            rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm). Angle will be recalculated as needed.'); ?>" data-original-title="<? print _('Panel Span'); ?>">
 	                                        <span class="add-on small">mm</span>
 	                                    </div>
 	                                </div>
@@ -200,7 +211,7 @@ include('../php/i18n.php');
 	                                <label for="chord<? print $p; ?>"><? print _('Tip chord'); ?></label>
 	                                <div class="input">
 	                                    <div class="input-append">
-	                                        <input class="medium redraw" id="chord<? print $p; ?>" name="chord<? print $p; ?>" size="10" value="<?= $_GET["chord$p"] ?>" type="text"
+	                                        <input class="medium redraw" id="chord<? print $p; ?>" panel="<?= $p; ?>" name="chord<? print $p; ?>" size="10" value="<?= $_GET["chord$p"] ?>" type="text"
 	                                            rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
 	                                        <span class="add-on small">mm</span>
 	                                    </div>
@@ -210,9 +221,19 @@ include('../php/i18n.php');
 	                                <label for="sweep<? print $p; ?>"><? print _('Sweep'); ?></label>
 	                                <div class="input">
 	                                    <div class="input-append">
-	                                        <input class="medium redraw" id="sweep<? print $p; ?>" name="sweep<? print $p; ?>" size="10" value="<?= $_GET["sweep$p"] ?>" type="text"
+	                                        <input class="medium redraw recalcangle" id="sweep<? print $p; ?>" panel="<?= $p; ?>" name="sweep<? print $p; ?>" size="10" value="<?= $_GET["sweep$p"] ?>" type="text"
 	                                            rel="popover" data-content="<? print _('For forward swept wings panels use negative values.'); ?>" data-original-title="<? print _('Sweep'); ?>">
 	                                        <span class="add-on small">mm</span>
+	                                    </div>
+	                                </div>
+	                            </div><!-- /clearfix -->
+	                            <div class="clearfix">
+	                                <label for="angle<?= $p; ?>"><? print _('Angle'); ?></label>
+	                                <div class="input">
+	                                    <div class="input-append">
+	                                        <input class="medium redraw recalcsweep" id="angle<?= $p; ?>" panel="<?= $p; ?>" name="angle<?= $p; ?>" size="10" type="text" value="<?= $_GET["angle$p"] ?>"
+	                                            rel="popover" data-content="<? print _('For forward swept wings use negative values. Enter the angle in degrees to calculate the sweep value and vice-versa.'); ?>" data-original-title="<? print _('Angle'); ?>">
+	                                        <span class="add-on small">&deg;</span>
 	                                    </div>
 	                                </div>
 	                            </div><!-- /clearfix -->
@@ -305,7 +326,9 @@ include('../php/i18n.php');
                     <ul>
 	                    <li><h4><? print _("v 1.5"); ?></h4>
 	                        <ul>
-	                            <li><? print _(""); ?></li>
+	                            <li><? print _("Now with angle recalculated as needed when span and/or sweep values are changed and vice-versa."); ?></li>
+	                            <li><? print _("BUGFIX: Firefox fixes."); ?></li>
+	                            <li><? print _("URL shorting is now manual."); ?></li>
 	                        </ul>
 	                    </li>
 	                    <li><h4><? print _("v 1.4"); ?></h4>
