@@ -75,15 +75,20 @@ include('../php/i18n.php');
             </div>
             <?
             if (!isset($_GET['unitsystem'])) {
-            	$_GET['panelsqty'] = 1;
-            	$_GET['unitsystem'] = 'metric';
-            	$_GET['cgpos'] = 20;
-            	$_GET['panelspan1'] = 600;
-            	$_GET['chord0'] = 340;
-            	$_GET['chord1'] = 180;
-            	$_GET['sweep1'] = 300;
-            	$_GET['angle1'] = 26.57;
-            } 
+                $_GET['panelsqty'] = 1;
+                $_GET['unitsystem'] = 'metric';
+                $_GET['cgpos'] = 20;
+                $_GET['panelspan1'] = 600;
+                $_GET['chord0'] = 340;
+                $_GET['chord1'] = 180;
+                $_GET['sweep1'] = 300;
+                $_GET['angle1'] = 26.57;
+            }
+            for ($i = 1; $i < 6; $i++) {
+                if (!isset($_GET["panel$i"]) and isset($_GET["panelspan$i"]) and floatval($_GET["panelspan$i"])>0) {
+                    $_GET["angle$i"] = str_replace(',', '.', round(atan(floatval($_GET["sweep$i"])/floatval($_GET["panelspan$i"])) * (180/M_PI),2));
+                }
+            }
             ?>
             <div class="row">
 	            <div class="span16">
