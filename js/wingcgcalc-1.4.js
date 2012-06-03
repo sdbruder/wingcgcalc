@@ -115,6 +115,7 @@ function strtoint(str) {
 
 function load_panels(qty) {
     var i,j;
+	debug = "";
     if (!window.panels) {
         window.panels = new Array();
     }
@@ -147,7 +148,6 @@ function load_panels(qty) {
     window.panels[0].root = panels[1].root;   // first chord
     window.panels[0].tipc = panels[qty].tipc; // last chord
 
-	debug = "";
     var cg_pos = strtofloat($("#cgpos").val());
     for(i=1;i<=qty;i++) {
         p = window.panels[i];
@@ -295,14 +295,12 @@ function draw_wing() {
         var w = p.span * 2;
         var h = Math.max(p.root, p.sweep+p.tipc, p.maxX-p.minX);
 
+		canvas_w = canvas_max_width;
+		canvas_h = canvas_max_height; 
 		if ((w/h) > (canvas_max_width/canvas_max_height)) {
-			canvas_w = canvas_max_width;
 			zoom = (canvas_w - border_size*2) / w;
-			canvas_h = canvas_max_height; // canvas_h = Math.round(h*zoom) + border_size*2;
 		} else {
-			canvas_h = canvas_max_height;
 			zoom = (canvas_h - border_size*2) / h;
-			canvas_w = canvas_max_width; // Math.round(h*zoom) + border_size*2;			
 		}
 
         canvas.setAttribute("width", canvas_w);
@@ -312,13 +310,19 @@ function draw_wing() {
         ctx.lineWidth = 1;
         ctx.strokeRect(0, 0, canvas_w, canvas_h);
         ctx.save();
-        ctx.translate(canvas_w/2, border_size);
+        if (p.minX < 0) {
+	        ctx.translate(canvas_w/2, border_size + zoom * Math.abs(p.minX));
+        } else {
+	        ctx.translate(canvas_w/2, border_size);        	
+        }
         ctx.scale(zoom,zoom);
         ctx.lineWidth = 2/zoom;
         ctx.strokeStyle = "#000";
         trw = Math.max(p.span,(canvas_w/zoom)/2);
         trh = -p.minX;
         ctx.save();
+
+		// $('#debug').val( debug );
         
         // right side
         for(i=1;i<=panel_qty;i++) {
