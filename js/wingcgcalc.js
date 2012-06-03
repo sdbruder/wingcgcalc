@@ -327,14 +327,12 @@ function draw_wing() {
         var w = p.span * 2;
         var h = Math.max(p.root, p.sweep+p.tipc, p.maxX-p.minX);
 
+        canvas_w = canvas_max_width;
+        canvas_h = canvas_max_height;
         if ((w/h) > (canvas_max_width/canvas_max_height)) {
-            canvas_w = canvas_max_width;
             zoom = (canvas_w - border_size*2) / w;
-            canvas_h = canvas_max_height; // canvas_h = Math.round(h*zoom) + border_size*2;
         } else {
-            canvas_h = canvas_max_height;
             zoom = (canvas_h - border_size*2) / h;
-            canvas_w = canvas_max_width; // Math.round(h*zoom) + border_size*2;			
         }
 
         canvas.setAttribute("width", canvas_w);
@@ -344,7 +342,11 @@ function draw_wing() {
         ctx.lineWidth = 1;
         ctx.strokeRect(0, 0, canvas_w, canvas_h);
         ctx.save();
-        ctx.translate(canvas_w/2, border_size);
+        if (p.minX < 0) {
+			ctx.translate(canvas_w/2, border_size + zoom * Math.abs(p.minX));
+        } else {
+            ctx.translate(canvas_w/2, border_size);
+        }
         ctx.scale(zoom,zoom);
         ctx.lineWidth = 2/zoom;
         ctx.strokeStyle = "#000";
