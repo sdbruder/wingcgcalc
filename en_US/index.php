@@ -40,7 +40,7 @@ include('../php/i18n.php');
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">WingCGCalc v1.4.1</a>
+          <a class="brand" href="#">WingCGCalc v1.4.2</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
