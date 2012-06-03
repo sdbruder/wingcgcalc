@@ -38,7 +38,62 @@ function intRandom(max) {
     return Math.floor(Math.random()*(max+1));
 }
 
-function draw_panel(ctx,pspan,sweep,rootc,tipc) {
+
+
+function draw_text(ctx,x,y,rotate,textAlign,text) {
+    ctx.save();
+    ctx.translate(x,y);
+    if (rotate != 0) {
+        ctx.rotate(rotate);
+    }
+    ctx.textAlign = textAlign;
+    ctx.fillStyle='#000';
+    size = 7/zoom;
+    ctx.font = size.toString()+'pt Sans-Serif';
+    ctx.fillText(text,0,0);
+    ctx.restore();
+}
+
+
+function draw_line(ctx,x1,y1,x2,y2,pos,text) {
+    if (y1==y2) {
+        ctx.beginPath();
+        ctx.moveTo(x1,y1 + 3/zoom);
+        ctx.lineTo(x1,y1 - 3/zoom);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x2,y2 + 3/zoom);
+        ctx.lineTo(x2,y2 - 3/zoom);
+        ctx.stroke();
+        if (text.length > 0) {
+            draw_text(ctx,(x1+x2*(pos-1))/pos,y1-3/zoom,0,'center',text);
+        }
+    } else if (x1 == x2) {
+        ctx.beginPath();
+        ctx.moveTo(x1 + 3/zoom, y1);
+        ctx.lineTo(x1 - 3/zoom, y1);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(x2 + 3/zoom, y2);
+        ctx.lineTo(x2 - 3/zoom, y2);
+        ctx.stroke();
+        if (text.length > 0) {
+            draw_text(ctx,x1+3/zoom,(y1+(pos-1)*y2)/pos,Math.PI/2,'center',text);
+        }
+    }
+    ctx.beginPath();
+    ctx.moveTo(x1,y1);
+    ctx.lineTo(x2,y2);
+    ctx.stroke();
+}
+
+
+function draw_panel(ctx,pspan,sweep,rootc,tipc,angle,drawmeasures,drawtip) {
+    if (window.systemunit == "metric") {
+        msr = ' mm';
+    } else {
+        msr = ' in';
+    }
     ctx.beginPath();
     ctx.moveTo(0,0);
     ctx.lineTo(pspan,sweep);
@@ -48,10 +103,38 @@ function draw_panel(ctx,pspan,sweep,rootc,tipc) {
     ctx.closePath();
     ctx.stroke();
     ctx.fill();
+    if (drawmeasures) {
+        if (Math.abs(angle) < 15) {
+            r = 0.7;
+        } else {
+            r = 0.4;
+        }
+        if (sweep >=0) {
+            draw_line(ctx, 0, -5/zoom, pspan, -5/zoom, 2, pspan.toString()+msr); // span
+            draw_line(ctx, pspan, 0, pspan, sweep, 2, sweep.toString()+msr); // sweep;
+            ctx.beginPath();
+            ctx.arc(0,0,pspan*r,0,angle*Math.PI/180,false);
+            ctx.stroke();
+            draw_text(ctx, pspan*(r+0.03), (0.7*r) * sweep, 0,'left', angle.toString()+'º');
+        } else {
+            draw_line(ctx, 0, sweep-5/zoom, pspan, sweep-5/zoom, 2, pspan.toString()+msr); // span
+            draw_line(ctx, 0, 0, 0, sweep, 2, sweep.toString()+msr); // sweep;
+            ctx.beginPath();
+            ctx.arc(0,0,pspan*r,angle*Math.PI/180,0,false);
+            ctx.stroke();
+            draw_text(ctx, pspan*(r+0.03), (0.7*r) * sweep, 0,'left', angle.toString()+'º');
+        }
+        draw_line(ctx, 0 + 7/zoom, 0, 0 + 7/zoom, rootc, 4, rootc.toString()+msr); // root chord
+        if (drawtip) {
+            draw_line(ctx, pspan + 7/zoom, sweep, pspan + 7/zoom, sweep + tipc, 2, tipc.toString()+msr); // tip chord
+        }
+    }
 }
 
-function draw_cg(context,zoom,p,wholewing) {
+
+function draw_cg(context,zoom,p,drawmeasures,wholewing) {
     context.save();
+
     context.beginPath();
     if (wholewing) {
         context.strokeStyle="#3636b2";
@@ -93,6 +176,19 @@ function draw_cg(context,zoom,p,wholewing) {
     context.arc(0, p.cg_dist, cg_radius, Math.PI * 1.0, Math.PI * 1.5, false);
     context.lineTo(0, p.cg_dist);
     context.fill();
+
+    if (drawmeasures) {
+        cg_pos = Math.round( strtofloat($("#cgpos").val()) * 100) / 100;
+        cg_dst = Math.round( p.cg_dist * 100) / 100;
+        if (window.systemunit == "metric") {
+            msr = ' mm';
+        } else {
+            msr = ' in';
+        }
+        draw_line(context, 0 + 14/zoom, 0, 0 + 14/zoom, p.cg_dist,
+            2, 'CG@'+cg_pos.toString()+'% '+cg_dst.toString()+msr); // cg
+    }
+
     context.restore();
 }
 
@@ -132,6 +228,7 @@ function load_panels(qty) {
     window.panels[0].sweep = 0;
     window.panels[0].maxX  = 0;
     window.panels[0].minX  = 0;
+    window.panels[0].angle = 0;
     var preconcsweep;
     for (i=1;i<=qty;i++) {
         j = i-1;
@@ -143,6 +240,7 @@ function load_panels(qty) {
         window.panels[i].root  =  strtofloat($("#chord"+j.toString()).val()); // previous panel
         window.panels[i].tipc  =  strtofloat($("#chord"+i.toString()).val());
         window.panels[i].sweep =  strtofloat($("#sweep"+i.toString()).val());
+        window.panels[i].angle =  strtofloat($("#angle"+i.toString()).val());
         window.panels[0].sweep += panels[i].sweep; // concatenate sweep
 
         // mantain max and min X coordinates
@@ -266,6 +364,7 @@ function makeURL() {
         url = url + mkURIcomponent('panelspan'+p);
         url = url + mkURIcomponent('chord'+p);
         url = url + mkURIcomponent('sweep'+p);
+        url = url + mkURIcomponent('angle'+p);
     }
     box = window.document.location;
     site = box.protocol + "//" + box.hostname + box.pathname;
@@ -317,7 +416,7 @@ function draw_wing() {
     var panels = load_panels(panel_qty);
     var canvas_max_width = 940;
     var canvas_max_height = 400;
-    var border_size = 20; 
+    var border_size = 30;
     var canvas = document.getElementById('wingcanvas');
     if (canvas.getContext){
         var ctx = canvas.getContext('2d');
@@ -343,7 +442,7 @@ function draw_wing() {
         ctx.strokeRect(0, 0, canvas_w, canvas_h);
         ctx.save();
         if (p.minX < 0) {
-			ctx.translate(canvas_w/2, border_size + zoom * Math.abs(p.minX));
+            ctx.translate(canvas_w/2, border_size + zoom * Math.abs(p.minX));
         } else {
             ctx.translate(canvas_w/2, border_size);
         }
@@ -357,10 +456,10 @@ function draw_wing() {
         // right side
         for(i=1;i<=panel_qty;i++) {
             var p = panels[i];
-            draw_panel(ctx,p.span,p.sweep,p.root,p.tipc);
-            if ((p.span > 0) && (p.cg_dist != 0)) {
-                draw_cg(ctx,zoom,p,false);
-            }
+            draw_panel(ctx,p.span,p.sweep,p.root,p.tipc,p.angle,true,(i==panel_qty));
+            /*if ((p.span > 0) && (p.cg_dist != 0) && (panel_qty >1)) {
+                draw_cg(ctx,zoom,p,false,false);
+            }*/
             ctx.translate(p.span,p.sweep);
         }
         ctx.restore();
@@ -368,11 +467,11 @@ function draw_wing() {
         // left side
         for(i=1;i<=panel_qty;i++) {
             var p = panels[i];
-            draw_panel(ctx,-p.span,p.sweep,p.root,p.tipc);
+            draw_panel(ctx,-p.span,p.sweep,p.root,p.tipc,p.angle,false,false);
             ctx.translate(-p.span,p.sweep);
         }                
         ctx.restore();
-        draw_cg(ctx,zoom,panels[0],true);
+        draw_cg(ctx,zoom,panels[0],true,true);
         ctx.restore();
     } 
     $('#deeplinkurl').val( makeURL() );
