@@ -8,9 +8,7 @@ include('../php/i18n.php');
     <meta charset="utf-8">
     <title><? print _('Flying Wing CG Calculator'); ?></title>
     <meta name="description" content="Flying wing CG calculator with multiple panels and forward sweep) - Flying Wings" />
-    <meta name="keywords" content="modelismo, aeromodelismo, aero, tutoriais, planadores, pacaembu, aeromodelismo eletrico, eletrico, bateria, 
-    motor, carregador, servo, esc, speed control, receptor, transmissor, 72mhz, park-flyer, slow-flyer, indoor, motoplanador, multimotor, 
-    hidroaviao, ESC, brushless, LiPo wing CG calculator (with multiple panels &amp; forward sweep), rc,r/c,radio,remote,control,model,electric, 
+    <meta name="keywords" content="modelismo, aeromodelismo, aero, planadores, aeromodelismo eletrico, park-flyer, slow-flyer, indoor, wing CG calculator (with multiple panels &amp; forward sweep), rc,r/c,radio,remote,control,model,electric, 
     plane,aircraft,fuel,airplane,heli,nitro,car,foamy,parkflyer,lipo,battery,brushless,video,gallery" />
     <meta itemprop="name" content="Flying Wing CG Calculator">
     <meta itemprop="description" content="HTML5 Flying Wing CG Calculator with support to multiple panels and forward sweep.">
@@ -23,6 +21,8 @@ include('../php/i18n.php');
     <script src="../js/bootstrap-popover.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
     <script src="../js/wingcgcalc.js"></script>
+    <script src="../js/base64.js"></script>
+    <script src="../js/canvas2image.js"></script>
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-27285625-1']);
@@ -135,6 +135,19 @@ include('../php/i18n.php');
                                     <span class="help-block"><? print _('15% for beginners, 25% for experts, 25-33% for airplanes.'); ?></span>
                                 </div>
                             </div><!-- /clearfix -->
+                            
+							<div class="clearfix">
+							    <label for="drawmeasurement"><? print _('Measurement'); ?></label>
+							    <div class="input">
+							        
+						            <input type="checkbox" class="redraw" id="drawmeasurement" name="drawmeasurement" value="draw" 
+						            <? if ($_GET['drawmeasurement'] == 'draw') { print 'checked="yes"'; } ?> > 
+						            <span><? print _('Draw the measures.'); ?></span>
+							        
+						        </div>
+							    
+							</div><!-- /clearfix -->
+							                            
                         </fieldset>
 
                         <fieldset>
@@ -296,6 +309,14 @@ include('../php/i18n.php');
 	                                	<button id="btn_shortit" class="btn primary"><? print _('Short it!'); ?></button>             
 								    </div>
 								</div><!-- /clearfix -->
+								<div class="clearfix">
+								    <div class="input">
+								    	<button id="btn_savepng" class="btn primary"><? print _('Save image'); ?></button>
+								    	<br/>
+								    	<br/>
+								    	Note: We are limited by the current available API and cant choose an appropriate name of the saved file.          
+								    </div>
+								</div><!-- /clearfix -->
 								<? /*
 								<div class="clearfix">
 								    <label for="debug"><? print _('Debug info'); ?></label>
@@ -320,10 +341,10 @@ include('../php/i18n.php');
                     <ul>
                         <li><strike><? print _("Deep-link for wings designs"); ?></strike></li>
                         <li><strike><? print _("Better wing drawings: whole wing and measuring in the canvas"); ?></strike></li>
-                        <li><? print _("Better wing drawings 2, the mission: measuring in the canvas"); ?></li>
+                        <li><strike><? print _("Better wing drawings 2, the mission: measuring in the canvas"); ?></strike></li>
+                        <li><strike><? print _("No more DOS in bit.ly, manual URL shorting."); ?></strike></li>
+                        <li><strike><? print _("Save canvas as image."); ?></strike></li>
                         <li><? print _("Save option to build a database of wings designs"); ?></li>
-                        <li><? print _("Some helper drawings exemplifying in the wing image what is the current measure been edited."); ?></li>
-                        <li><? print _("No more DOS in bit.ly, manual URL shorting."); ?></li>
                         <li><? print _("Any other ideias? Please contact me."); ?></li>
                     </ul>
 

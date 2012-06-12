@@ -418,6 +418,7 @@ function draw_wing() {
     var canvas_max_height = 400;
     var border_size = 30;
     var canvas = document.getElementById('wingcanvas');
+    var drawmeasurement = $('#drawmeasurement').prop('checked');
     if (canvas.getContext){
         var ctx = canvas.getContext('2d');
 
@@ -456,7 +457,7 @@ function draw_wing() {
         // right side
         for(i=1;i<=panel_qty;i++) {
             var p = panels[i];
-            draw_panel(ctx,p.span,p.sweep,p.root,p.tipc,p.angle,true,(i==panel_qty));
+            draw_panel(ctx,p.span,p.sweep,p.root,p.tipc,p.angle,drawmeasurement,(i==panel_qty));
             /*if ((p.span > 0) && (p.cg_dist != 0) && (panel_qty >1)) {
                 draw_cg(ctx,zoom,p,false,false);
             }*/
@@ -471,7 +472,7 @@ function draw_wing() {
             ctx.translate(-p.span,p.sweep);
         }                
         ctx.restore();
-        draw_cg(ctx,zoom,panels[0],true,true);
+        draw_cg(ctx,zoom,panels[0],drawmeasurement,true);
         ctx.restore();
     } 
     $('#deeplinkurl').val( makeURL() );
@@ -559,6 +560,12 @@ function URLSelectAll() {
 }
 
 
+function savepng() {
+    var canvas = document.getElementById('wingcanvas');
+	Canvas2Image.saveAsPNG(canvas);
+}
+
+
 function wingcgcalc_setup() {
     // event linking
     $("#publicurl").click(function(event){      URLSelectAll();             event.preventDefault();});
@@ -568,6 +575,7 @@ function wingcgcalc_setup() {
     $("#btn_metric").click(function(event){     systemunits_to_metric();    event.preventDefault();});
     $("#btn_imperial").click(function(event){   systemunits_to_imperial();  event.preventDefault();});
     $("#btn_shortit").click(function(event){    shortit();                  event.preventDefault();});
+    $("#btn_savepng").click(function(event){    savepng();                  event.preventDefault();});
     $(".redraw").change(function(){             draw_wing(); });
     $(".recalcsweep").change(function(){        angle2sweep($(this).attr('panel')); draw_wing(); });
     $(".recalcangle").change(function(){        sweep2angle($(this).attr('panel')); draw_wing(); });
