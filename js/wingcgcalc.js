@@ -382,12 +382,16 @@ function makeURL() {
 function shortURL(field, url_to_be_shorted) {	
     $.ajax({
       url: "/php/short.php?addr="+encodeURIComponent(url_to_be_shorted),
+      timeout: 2000,
       success: function(data) {
           if (data.substr(0, 7) == 'http://') {
               field.val(data);
           } else {
               field.val(url_to_be_shorted);
           }
+      },
+      error: function(x, t, m) {
+          field.val(url_to_be_shorted);
       }
     });
 }
