@@ -40,7 +40,7 @@ include('../php/i18n.php');
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">WingCGCalc v1.5</a>
+          <a class="brand" href="#">WingCGCalc</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
@@ -78,6 +78,7 @@ include('../php/i18n.php');
                 $_GET['panelsqty'] = 1;
                 $_GET['unitsystem'] = 'metric';
                 $_GET['cgpos'] = 20;
+                $_GET['weight'] = 600;
                 $_GET['panelspan1'] = 600;
                 $_GET['chord0'] = 340;
                 $_GET['chord1'] = 180;
@@ -372,6 +373,13 @@ include('../php/i18n.php');
 
                     <h2><? print _('History'); ?></h2>
                     <ul>
+                        <li><h4><? print _("v 1.6"); ?></h4>
+                            <ul>
+                                <li><? print _("Wing loading calculation."); ?></li>
+                                <li><? print _("BUGFIX: URL shorting now has a smaller timeout, 2 seconds."); ?></li>
+                                <li><? print _("BUGFIX: Small translation issues."); ?></li>
+                            </ul>
+                        </li>
 	                    <li><h4><? print _("v 1.5"); ?></h4>
 	                        <ul>
 	                            <li><? print _("Now with angle recalculated as needed when span and/or sweep values are changed and vice-versa."); ?></li>
