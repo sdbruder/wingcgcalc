@@ -40,7 +40,7 @@ include('../php/i18n.php');
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="#">WingCGCalc v1.5</a>
+          <a class="brand" href="#">WingCGCalc</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
@@ -78,6 +78,7 @@ include('../php/i18n.php');
                 $_GET['panelsqty'] = 1;
                 $_GET['unitsystem'] = 'metric';
                 $_GET['cgpos'] = 20;
+                $_GET['weight'] = 600;
                 $_GET['panelspan1'] = 600;
                 $_GET['chord0'] = 340;
                 $_GET['chord1'] = 180;
@@ -135,6 +136,18 @@ include('../php/i18n.php');
                                     <span class="help-block"><? print _('15% for beginners, 25% for experts, 25-33% for airplanes.'); ?></span>
                                 </div>
                             </div><!-- /clearfix -->
+
+                            <div class="clearfix">
+                                <label for="weight"><? print _('Weight'); ?></label>
+                                <div class="input">
+                                    <div class="input-append">
+                                        <input class="medium redraw" id="weight" name="weight" size="10" type="text" value="<?= $_GET['weight'] ?>"
+                                            rel="popover" data-content="<? print _('Enter the total flying weight to calculate the wing load.'); ?>" data-original-title="<? print _('Weight'); ?>">
+                                        <span id="weightunit" class="add-on">g</span>
+                                    </div>
+                                </div>
+                            </div><!-- /clearfix -->
+
                             
 							<div class="clearfix">
 							    <label for="drawmeasurement"><? print _('Measurement'); ?></label>
@@ -301,6 +314,17 @@ include('../php/i18n.php');
                                         </div>
                                     </div>
                                 </div><!-- /clearfix -->
+                             
+                                <div class="clearfix">
+                                    <label for="wingload"><? print _('Wing Load'); ?></label>
+                                    <div class="input">
+                                        <div class="input-append">
+                                            <input class="medium" id="wingload" name="wingload" size="10" type="text">
+                                            <span id="wingloadunit" class="add-on small">g/dm&sup2;</span>
+                                        </div>
+                                    </div>
+                                </div><!-- /clearfix -->
+
 								<div class="clearfix">
 								    <label for="publicurl"><? print _('Deep linking URL'); ?></label>
 								    <div class="input">
@@ -313,7 +337,7 @@ include('../php/i18n.php');
 								    	<button id="btn_savepng" class="btn primary"><? print _('Save image'); ?></button>
 								    	<br/>
 								    	<br/>
-								    	Note: We are limited by the current available API and cant choose an appropriate name of the saved file.          
+								    	<? print _("Note: We are limited by the current available API and cant choose an appropriate name of the saved file."); ?>
 								    </div>
 								</div><!-- /clearfix -->
 								<? /*
@@ -349,6 +373,13 @@ include('../php/i18n.php');
 
                     <h2><? print _('History'); ?></h2>
                     <ul>
+                        <li><h4><? print _("v 1.6"); ?></h4>
+                            <ul>
+                                <li><? print _("Wing loading calculation."); ?></li>
+                                <li><? print _("BUGFIX: URL shorting now has a smaller timeout, 2 seconds."); ?></li>
+                                <li><? print _("BUGFIX: Small translation issues."); ?></li>
+                            </ul>
+                        </li>
 	                    <li><h4><? print _("v 1.5"); ?></h4>
 	                        <ul>
 	                            <li><? print _("Now with angle recalculated as needed when span and/or sweep values are changed and vice-versa."); ?></li>

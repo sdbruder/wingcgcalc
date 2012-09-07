@@ -332,12 +332,19 @@ function load_panels(qty) {
     // Update UI
     if (window.systemunit == "metric") {
         $('#area').val(    Math.round( (2*window.panels[0].wingarea/10000) * 100) / 100);
+        loadarea = $('#area').val();
     } else {
         $('#area').val(    Math.round( (2*window.panels[0].wingarea)       * 100) / 100);
+        loadarea = $('#area').val()/144;
     }
     $('#macdist').val( Math.round( window.panels[0].macdist * 100) / 100);
     $('#maclen').val(  Math.round( window.panels[0].maclen * 100) / 100);
     $('#cgdist').val(  Math.round( window.panels[0].cg_dist * 100) / 100);
+
+    w = $('#weight').val();
+    if (loadarea>0) {
+        $('#wingload').val(Math.round( (w/loadarea) * 100) / 100);
+    }
     //$('#debug').val( debug );
 
     return panels;
@@ -382,12 +389,16 @@ function makeURL() {
 function shortURL(field, url_to_be_shorted) {	
     $.ajax({
       url: "/php/short.php?addr="+encodeURIComponent(url_to_be_shorted),
+      timeout: 2000,
       success: function(data) {
           if (data.substr(0, 7) == 'http://') {
               field.val(data);
           } else {
               field.val(url_to_be_shorted);
           }
+      },
+      error: function(x, t, m) {
+          field.val(url_to_be_shorted);
       }
     });
 }
@@ -489,6 +500,7 @@ function shortit() {
 
 function systemunits_to_metric(recalc) {
     var inch_value = 25.4;
+    var ounce_value = 28.349523;
     var unitSys = $("#unitsystem");
     recalc = typeof recalc !== 'undefined' ? recalc : true;
     
@@ -499,6 +511,7 @@ function systemunits_to_metric(recalc) {
         $("#btn_imperial").removeClass("primary");
 
         if (recalc) {
+            $("#weight").val( Math.round( 100 * strtofloat($("#weight").val()) * ounce_value ) / 100);
             $("#chord0").val( Math.round( 100 * strtofloat($("#chord0").val()) * inch_value ) / 100);
             for(i=1;i<=6;i++) {
                 p = i.toString();
@@ -509,9 +522,13 @@ function systemunits_to_metric(recalc) {
         }
         $("#areaunit").removeClass("add-on");
         $("#cgunit").removeClass("add-on");
+        $("#weightunit").removeClass("add-on");
+        $("#wingloadunit").removeClass("add-on");
         $(".add-on").replaceWith('<span class="add-on small">mm</span>');
         $("#areaunit").replaceWith('<span id="areaunit" class="add-on small">dm&sup2;</span>');
         $("#cgunit").addClass("add-on");
+        $("#weightunit").replaceWith('<span id="weightunit" class="add-on">g</span>');
+        $("#wingloadunit").replaceWith('<span id="wingloadunit" class="add-on small">g/dm&sup2;</span>');
 
         window.systemunit = "metric";
         unitSys.val(window.systemunit);
@@ -521,6 +538,7 @@ function systemunits_to_metric(recalc) {
 
 function systemunits_to_imperial(recalc) {
     var inch_value = 25.4;
+    var ounce_value = 28.349523;
     var unitSys = $("#unitsystem");
     recalc = typeof recalc !== 'undefined' ? recalc : true;
     
@@ -531,6 +549,7 @@ function systemunits_to_imperial(recalc) {
         $("#btn_metric").removeClass("primary");
 
         if (recalc) {
+            $("#weight").val( Math.round( 100 * strtofloat($("#weight").val()) / ounce_value ) / 100);
             $("#chord0").val( Math.round( 100 * strtofloat($("#chord0").val()) / inch_value ) / 100);
             for(i=1;i<=6;i++) {
                 p = i.toString();
@@ -542,9 +561,13 @@ function systemunits_to_imperial(recalc) {
 
         $("#areaunit").removeClass("add-on");
         $("#cgunit").removeClass("add-on");
+        $("#weightunit").removeClass("add-on");
+        $("#wingloadunit").removeClass("add-on");
         $(".add-on").replaceWith('<span class="add-on small">in</span>');
         $("#areaunit").replaceWith('<span id="areaunit" class="add-on small">in&sup2;</span>');
         $("#cgunit").addClass("add-on");
+        $("#weightunit").replaceWith('<span id="weightunit" class="add-on small">oz</span>');
+        $("#wingloadunit").replaceWith('<span id="wingloadunit" class="add-on small">oz/ft&sup2;</span>');
 
         window.systemunit = "imperial";
         unitSys.val(window.systemunit);
