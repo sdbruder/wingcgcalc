@@ -314,7 +314,7 @@ include('../php/i18n.php');
 								    	<button id="btn_savepng" class="btn primary"><? print _('Save image'); ?></button>
 								    	<br/>
 								    	<br/>
-								    	Note: We are limited by the current available API and cant choose an appropriate name of the saved file.          
+								    	<? print _("Note: We are limited by the current available API and cant choose an appropriate name of the saved file."); ?>
 								    </div>
 								</div><!-- /clearfix -->
 								<? /*
