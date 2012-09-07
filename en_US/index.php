@@ -135,6 +135,18 @@ include('../php/i18n.php');
                                     <span class="help-block"><? print _('15% for beginners, 25% for experts, 25-33% for airplanes.'); ?></span>
                                 </div>
                             </div><!-- /clearfix -->
+
+                            <div class="clearfix">
+                                <label for="weight"><? print _('Weight'); ?></label>
+                                <div class="input">
+                                    <div class="input-append">
+                                        <input class="medium redraw" id="weight" name="weight" size="10" type="text" value="<?= $_GET['weight'] ?>"
+                                            rel="popover" data-content="<? print _('Enter the total flying weight to calculate the wing load.'); ?>" data-original-title="<? print _('Weight'); ?>">
+                                        <span id="weightunit" class="add-on">g</span>
+                                    </div>
+                                </div>
+                            </div><!-- /clearfix -->
+
                             
 							<div class="clearfix">
 							    <label for="drawmeasurement"><? print _('Measurement'); ?></label>
@@ -302,6 +314,16 @@ include('../php/i18n.php');
                                     </div>
                                 </div><!-- /clearfix -->
                              
+                                <div class="clearfix">
+                                    <label for="wingload"><? print _('Wing Load'); ?></label>
+                                    <div class="input">
+                                        <div class="input-append">
+                                            <input class="medium" id="wingload" name="wingload" size="10" type="text">
+                                            <span id="wingloadunit" class="add-on small">g/dm&sup2;</span>
+                                        </div>
+                                    </div>
+                                </div><!-- /clearfix -->
+
 								<div class="clearfix">
 								    <label for="publicurl"><? print _('Deep linking URL'); ?></label>
 								    <div class="input">
