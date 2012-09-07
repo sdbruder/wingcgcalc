@@ -332,16 +332,18 @@ function load_panels(qty) {
     // Update UI
     if (window.systemunit == "metric") {
         $('#area').val(    Math.round( (2*window.panels[0].wingarea/10000) * 100) / 100);
+        loadarea = $('#area').val();
     } else {
         $('#area').val(    Math.round( (2*window.panels[0].wingarea)       * 100) / 100);
+        loadarea = $('#area').val()/144;
     }
     $('#macdist').val( Math.round( window.panels[0].macdist * 100) / 100);
     $('#maclen').val(  Math.round( window.panels[0].maclen * 100) / 100);
     $('#cgdist').val(  Math.round( window.panels[0].cg_dist * 100) / 100);
+
     w = $('#weight').val();
-    a = $('#area').val(); 
-    if (a>0) {
-        $('#wingload').val(Math.round( (w/a) * 100) / 100);
+    if (loadarea>0) {
+        $('#wingload').val(Math.round( (w/loadarea) * 100) / 100);
     }
     //$('#debug').val( debug );
 
@@ -565,7 +567,7 @@ function systemunits_to_imperial(recalc) {
         $("#areaunit").replaceWith('<span id="areaunit" class="add-on small">in&sup2;</span>');
         $("#cgunit").addClass("add-on");
         $("#weightunit").replaceWith('<span id="weightunit" class="add-on small">oz</span>');
-        $("#wingloadunit").replaceWith('<span id="wingloadunit" class="add-on small">oz/in&sup2;</span>');
+        $("#wingloadunit").replaceWith('<span id="wingloadunit" class="add-on small">oz/ft&sup2;</span>');
 
         window.systemunit = "imperial";
         unitSys.val(window.systemunit);
