@@ -45,8 +45,8 @@ include('../php/i18n.php');
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/sobre/"><? print _('Contact'); ?></a></li>
-            <li><a href="../pt_BR/"><img src="../imgs/flag_brasil.png"  width="22" height="16"></a></li>
-            <li><a href="../en_US/"><img src="../imgs/flag_england.png" width="22" height="16"></a></li>
+            <li><a href="../pt_BR/" id="link_pt_BR"><img src="../imgs/flag_brasil.png"  width="22" height="16"></a></li>
+            <li><a href="../en_US/" id="link_en_US"><img src="../imgs/flag_england.png" width="22" height="16"></a></li>
           </ul>
         </div>
       </div>
