@@ -6,8 +6,8 @@ if (strpos($locale[0], '_') !== false) {
 	$tk = explode('-',$locale[0]);
 }
 if ($tk[0] == "pt") {
-	header('Location: pt_BR/');
+	header('Location: pt_BR/?'. $_SERVER['QUERY_STRING']);
 } else {
-	header('Location: en_US/');
+	header('Location: en_US/?'. $_SERVER['QUERY_STRING']);
 }
 ?>

@@ -360,11 +360,13 @@ function mkURIcomponent(id) {
     return ret;
 }
 
-function makeURL() {
+function makePARAMS() {
     var url = "?";
     url = url + mkURIcomponent('unitsystem');
     url = url + mkURIcomponent('panelsqty');
     url = url + mkURIcomponent('cgpos');
+    url = url + mkURIcomponent('weight');
+    url = url + mkURIcomponent('drawmeasurement');
     url = url + mkURIcomponent('chord0');
     for(i=1;i<=6;i++) {
         p = i.toString();
@@ -373,16 +375,20 @@ function makeURL() {
         url = url + mkURIcomponent('sweep'+p);
         url = url + mkURIcomponent('angle'+p);
     }
+    return url; 
+}
+
+function makeURL() {
+    url = makePARAMS();
     box = window.document.location;
     site = box.protocol + "//" + box.hostname + box.pathname;
-    /*
-    if (typeof(box.origin)=='undefined') {
-        tokens = box.toString.split('?', 2);
-        site = tokens[0];
-    } else {
-        site = box.origin + box.pathname;	
-    }*/
+    site = box.protocol + "//" + box.hostname + "/";
     return site+url; 
+}
+
+
+function fix_language_link_params(a) {
+    a.href = a.href + makePARAMS();
 }
 
 
@@ -506,9 +512,9 @@ function systemunits_to_metric(recalc) {
     
     if (window.systemunit != "metric") {
         $("#btn_metric").addClass("disabled");
-        $("#btn_metric").addClass("primary");
+        $("#btn_metric").addClass("btn-primary");
         $("#btn_imperial").removeClass("disabled");
-        $("#btn_imperial").removeClass("primary");
+        $("#btn_imperial").removeClass("btn-primary");
 
         if (recalc) {
             $("#weight").val( Math.round( 100 * strtofloat($("#weight").val()) * ounce_value ) / 100);
@@ -544,9 +550,9 @@ function systemunits_to_imperial(recalc) {
     
     if (window.systemunit != "imperial") {
         $("#btn_imperial").addClass("disabled");
-        $("#btn_imperial").addClass("primary");
+        $("#btn_imperial").addClass("btn-primary");
         $("#btn_metric").removeClass("disabled");
-        $("#btn_metric").removeClass("primary");
+        $("#btn_metric").removeClass("btn-primary");
 
         if (recalc) {
             $("#weight").val( Math.round( 100 * strtofloat($("#weight").val()) / ounce_value ) / 100);
@@ -591,6 +597,8 @@ function savepng() {
 
 function wingcgcalc_setup() {
     // event linking
+    $("#link_pt_BR").click(function(event){     fix_language_link_params(this); });
+    $("#link_en_US").click(function(event){     fix_language_link_params(this); });
     $("#publicurl").click(function(event){      URLSelectAll();             event.preventDefault();});
     $("#addPanelBtn").click(function(event){    addPanel();    draw_wing(); event.preventDefault();});
     $("#removePanelBtn").click(function(event){ removePanel(); draw_wing(); event.preventDefault();});
@@ -608,7 +616,7 @@ function wingcgcalc_setup() {
     window.systemunit = unitSys.val();
 
     // setup modals
-    $("#noIE").modal({keyboard: true, backdrop: 'static'});
+    //$("#noIE").modal({keyboard: true, backdrop: 'static'});
 
     // setup popovers
     $(function () {
