@@ -8,8 +8,7 @@ include('../php/i18n.php');
     <meta charset="utf-8">
     <title><? print _('Flying Wing CG Calculator'); ?></title>
     <meta name="description" content="Flying wing CG calculator with multiple panels and forward sweep) - Flying Wings" />
-    <meta name="keywords" content="modelismo, aeromodelismo, aero, planadores, aeromodelismo eletrico, park-flyer, slow-flyer, indoor, wing CG calculator (with multiple panels &amp; forward sweep), rc,r/c,radio,remote,control,model,electric, 
-    plane,aircraft,fuel,airplane,heli,nitro,car,foamy,parkflyer,lipo,battery,brushless,video,gallery" />
+    <meta name="keywords" content="cg,mac,swept,calculator,aero, planadores, aeromodelismo eletrico, wing CG calculator (with multiple panels &amp; forward sweep),cmei cg locator" />
     <meta itemprop="name" content="Flying Wing CG Calculator">
     <meta itemprop="description" content="HTML5 Flying Wing CG Calculator with support to multiple panels and forward sweep.">
     <link rel="stylesheet" href="../css/bootstrap.css">
