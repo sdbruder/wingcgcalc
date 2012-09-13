@@ -387,6 +387,14 @@ for ($i = 1; $i < 6; $i++) {
                 <div class="span6">
                     <h2><? print _('History'); ?></h2>
                     <ul>
+                        <li><h4><? print _("v 1.7"); ?></h4>
+                            <ul>
+                                <li><small><? print _("new bootstrap and small layout tweaks."); ?></small></li>
+                                <li><small><? print _("you can now change languages without loosing your wing."); ?></small></li>
+                                <li><small><? print _("deeplink is now language agnostic."); ?></small></li>
+                                <li><small><? print _("some code re-arrangement."); ?></small></li>
+                            </ul>
+                        </li>
                         <li><h4><? print _("v 1.6"); ?></h4>
                             <ul>
                                 <li><small><? print _("Wing loading calculation."); ?></small></li>
