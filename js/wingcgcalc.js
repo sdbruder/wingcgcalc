@@ -512,9 +512,9 @@ function systemunits_to_metric(recalc) {
     
     if (window.systemunit != "metric") {
         $("#btn_metric").addClass("disabled");
-        $("#btn_metric").addClass("primary");
+        $("#btn_metric").addClass("btn-primary");
         $("#btn_imperial").removeClass("disabled");
-        $("#btn_imperial").removeClass("primary");
+        $("#btn_imperial").removeClass("btn-primary");
 
         if (recalc) {
             $("#weight").val( Math.round( 100 * strtofloat($("#weight").val()) * ounce_value ) / 100);
@@ -550,9 +550,9 @@ function systemunits_to_imperial(recalc) {
     
     if (window.systemunit != "imperial") {
         $("#btn_imperial").addClass("disabled");
-        $("#btn_imperial").addClass("primary");
+        $("#btn_imperial").addClass("btn-primary");
         $("#btn_metric").removeClass("disabled");
-        $("#btn_metric").removeClass("primary");
+        $("#btn_metric").removeClass("btn-primary");
 
         if (recalc) {
             $("#weight").val( Math.round( 100 * strtofloat($("#weight").val()) / ounce_value ) / 100);

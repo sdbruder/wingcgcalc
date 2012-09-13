@@ -87,38 +87,38 @@ for ($i = 1; $i < 6; $i++) {
                         </script>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="span12">
                         <h1><? print _('WingCGCalc'); ?></h1>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="row">
 	            <div class="span12">
-	                <h2><? print _('Wing'); ?></h2>
+	                <!-- <h2><? print _('Wing'); ?></h2> -->
 	                <canvas id="wingcanvas" width="940" height="300"></canvas>
 	            </div>
             </div>
             <div class="row">
                 <div class="span6">
                     <h2><? print _('Measures'); ?></h2>
-                    <form id="measuresform" action="" class="" onsubmit="return false">
+                    <form id="measuresform" action="" class="form-horizontal" onsubmit="return false">
                         <input type="hidden" id="panelsqty" name="panelsqty" value="<?= $_GET['panelsqty'] ?>">
                         <input type="hidden" id="unitsystem" name="unitsystem" value="metric"> <? // to be fixed later in the js setup ?>
-                        <fieldset>
+                        <fieldset class="control-group">
                             <legend><? print _('Options'); ?></legend>
-                            <div class="clearfix">
-                                <label for="cgpos"><? print _('Unit System'); ?></label>
-                                <div class="input">
+                            <div class="control-group">
+                                <label class="control-label" for="cgpos"><? print _('Unit System'); ?></label>
+                                <div class="controls">
                             	<? if ($_GET['sys'] == 'imperial') { ?>
                                     <button id="btn_metric"   class="btn"><? print _('Metric'); ?></button>&nbsp;
-                                    <button id="btn_imperial" class="btn primary disabled"><? print _('Imperial'); ?></button>
+                                    <button id="btn_imperial" class="btn btn-primary disabled"><? print _('Imperial'); ?></button>
                                     <script>
                                     // global variables setup
                                     window.systemunit = "imperial";
                                     </script>
                                 <? } else { ?>
-									<button id="btn_metric"   class="btn primary disabled"><? print _('Metric'); ?></button>&nbsp;
+									<button id="btn_metric"   class="btn btn-primary disabled"><? print _('Metric'); ?></button>&nbsp;
 									<button id="btn_imperial" class="btn"><? print _('Imperial'); ?></button>
                                     <script>
                                     // global variables setup
@@ -126,150 +126,151 @@ for ($i = 1; $i < 6; $i++) {
                                     </script>
                                 <? } ?>
                                 </div>
-                            </div><!-- /clearfix -->
-                            <div class="clearfix">
-                                <label for="cgpos"><? print _('CG Position'); ?></label>
-                                <div class="input">
+                            </div><!-- /control-group -->
+                            <div class="control-group">
+                                <label class="control-label" for="cgpos"><? print _('CG Position'); ?></label>
+                                <div class="controls">
                                     <div class="input-append">
                                         <input class="medium redraw" id="cgpos" name="cgpos" size="10" type="text" value="<?= $_GET['cgpos'] ?>"
                                             rel="popover" data-content="<? print _('For tailless wings, start with 15% for beginners going to 25% for experts. Trainers airplanes normally use 25-33%.'); ?>" data-original-title="<? print _('CG Position'); ?>">
                                         <span id="cgunit" class="add-on">%</span>
                                     </div>
-                                    <span class="help-block"><? print _('15% for beginners, 25% for experts, 25-33% for airplanes.'); ?></span>
+                                    <span class="help-block"><small><? print _('15% for beginners, 25% for experts, 25-33% for airplanes.'); ?></small></span>
                                 </div>
-                            </div><!-- /clearfix -->
+                            </div><!-- /control-group -->
 
-                            <div class="clearfix">
-                                <label for="weight"><? print _('Weight'); ?></label>
-                                <div class="input">
+                            <div class="control-group">
+                                <label class="control-label" for="weight"><? print _('Weight'); ?></label>
+                                <div class="controls">
                                     <div class="input-append">
                                         <input class="medium redraw" id="weight" name="weight" size="10" type="text" value="<?= $_GET['weight'] ?>"
                                             rel="popover" data-content="<? print _('Enter the total flying weight to calculate the wing load.'); ?>" data-original-title="<? print _('Weight'); ?>">
                                         <span id="weightunit" class="add-on">g</span>
                                     </div>
                                 </div>
-                            </div><!-- /clearfix -->
+                            </div><!-- /control-group -->
 
                             
-							<div class="clearfix">
-							    <label for="drawmeasurement"><? print _('Measurement'); ?></label>
-							    <div class="input">
-							        
-						            <input type="checkbox" class="redraw" id="drawmeasurement" name="drawmeasurement" value="draw" 
-						            <? if ($_GET['drawmeasurement'] == 'draw') { print 'checked="yes"'; } ?> > 
-						            <span><? print _('Draw the measures.'); ?></span>
+							<div class="control-group">
+							    <label class="control-label" for="drawmeasurement"><? print _('Measurement'); ?></label>
+							    <div class="controls">
+							        <label class="checkbox">
+    						            <input type="checkbox" class="redraw" id="drawmeasurement" name="drawmeasurement" value="draw" 
+    						            <? if ($_GET['drawmeasurement'] == 'draw') { print 'checked="yes"'; } ?> > 
+    						            <? print _('Draw the measures.'); ?>
+                                    </label>
 							        
 						        </div>
 							    
-							</div><!-- /clearfix -->
+							</div><!-- /control-group -->
 							                            
                         </fieldset>
 
-                        <fieldset>
+                        <fieldset class="control-group">
                             <legend>
                                 Panel 1
-                                <a href="#" id="addPanelBtn"    class="btn success">+1</a>
-                                <a href="#" id="removePanelBtn" class="btn danger disabled">-1</a>
+                                <a href="#" id="addPanelBtn"    class="btn btn-success">+1</a>
+                                <a href="#" id="removePanelBtn" class="btn btn-danger disabled">-1</a>
                             </legend>
-                            <div class="clearfix">
-                                <label for="panelspan1"><? print _('Panel span'); ?></label>
-                                <div class="input">
+                            <div class="control-group">
+                                <label class="control-label" for="panelspan1"><? print _('Panel span'); ?></label>
+                                <div class="controls">
                                     <div class="input-append">
                                         <input class="medium redraw recalcangle" id="panelspan1" panel="1" name="panelspan1" size="10" type="text" value="<?= $_GET['panelspan1'] ?>"
                                             rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm). Angle will be recalculated as needed.'); ?>" data-original-title="<? print _('Panel Span'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
                                 </div>
-                            </div><!-- /clearfix -->
-                            <div class="clearfix">
-                                <label for="chord0"><? print _('Root chord'); ?></label>
-                                <div class="input">
+                            </div><!-- /control-group -->
+                            <div class="control-group">
+                                <label class="control-label" for="chord0"><? print _('Root chord'); ?></label>
+                                <div class="controls">
                                     <div class="input-append">
                                         <input class="medium redraw" id="chord0" panel="1" name="chord0" size="10" type="text" value="<?= $_GET['chord0'] ?>"
                                             rel="popover" data-content="<? print _('Chord in the root of this panel'); ?>" data-original-title="<? print _('Root Chord'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
                                 </div>
-                            </div><!-- /clearfix -->
-                            <div class="clearfix">
-                                <label for="chord1"><? print _('Tip chord'); ?></label>
-                                <div class="input">
+                            </div><!-- /control-group -->
+                            <div class="control-group">
+                                <label class="control-label" for="chord1"><? print _('Tip chord'); ?></label>
+                                <div class="controls">
                                     <div class="input-append">
                                         <input class="medium redraw" id="chord1" panel="1" name="chord1" size="10" type="text" value="<?= $_GET['chord1'] ?>"
                                             rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
                                 </div>
-                            </div><!-- /clearfix -->
-                            <div class="clearfix">
-                                <label for="sweep1"><? print _('Sweep'); ?></label>
-                                <div class="input">
+                            </div><!-- /control-group -->
+                            <div class="control-group">
+                                <label class="control-label" for="sweep1"><? print _('Sweep'); ?></label>
+                                <div class="controls">
                                     <div class="input-append">
                                         <input class="medium redraw recalcangle" id="sweep1" panel="1" name="sweep1" size="10" type="text" value="<?= $_GET['sweep1'] ?>"
                                             rel="popover" data-content="<? print _('For forward swept wings use negative values. Enter the sweep value to calculate the angle and vice-versa.'); ?>" data-original-title="<? print _('Sweep'); ?>">
                                         <span class="add-on small">mm</span>
                                     </div>
                                 </div>
-                            </div><!-- /clearfix -->
-							<div class="clearfix">
-							    <label for="angle1"><? print _('Angle'); ?></label>
-							    <div class="input">
+                            </div><!-- /control-group -->
+							<div class="control-group">
+							    <label class="control-label" for="angle1"><? print _('Angle'); ?></label>
+							    <div class="controls">
 							        <div class="input-append">
 							            <input class="medium redraw recalcsweep" id="angle1" panel="1" name="angle1" size="10" type="text" value="<?= $_GET['angle1'] ?>"
 							                rel="popover" data-content="<? print _('For forward swept wings use negative values. Enter the angle in degrees to calculate the sweep value and vice-versa.'); ?>" data-original-title="<? print _('Angle'); ?>">
 							            <span class="add-on small">&deg;</span>
 							        </div>
 							    </div>
-							</div><!-- /clearfix -->
+							</div><!-- /control-group -->
                         </fieldset>
 						<? for($p=2;$p<=6;$p++) {
 						?>
 							<? if ($_GET['panelsqty'] >= $p) { ?>
-		                        <fieldset id="panel<? print $p; ?>" class="">
+		                        <fieldset id="panel<? print $p; ?>" class="control-group">
 	                        <? } else { ?>
-		                        <fieldset id="panel<? print $p; ?>" class="hide">
+		                        <fieldset id="panel<? print $p; ?>" class="control-group hide">
 	                        <? } ?>
 	                            <legend><? printf( _('Panel %d'),$p); ?></legend>
-	                            <div class="clearfix">
-	                                <label for="panelspan<? print $p; ?>"><? print _('Panel span'); ?></label>
-	                                <div class="input">
+	                            <div class="control-group">
+	                                <label class="control-label" for="panelspan<? print $p; ?>"><? print _('Panel span'); ?></label>
+	                                <div class="controls">
 	                                    <div class="input-append">
 	                                        <input class="medium redraw recalcangle" id="panelspan<?= $p; ?>" panel="<?= $p; ?>" name="panelspan<?= $p; ?>" size="10"    value="<?= $_GET["panelspan$p"] ?>" type="text"
 	                                            rel="popover" data-content="<? print _('Span of this panel in the semiwing (Ex: If your wing has 1200mm span and only one panel, use 600mm). Angle will be recalculated as needed.'); ?>" data-original-title="<? print _('Panel Span'); ?>">
 	                                        <span class="add-on small">mm</span>
 	                                    </div>
 	                                </div>
-	                            </div><!-- /clearfix -->
-	                            <div class="clearfix">
-	                                <label for="chord<? print $p; ?>"><? print _('Tip chord'); ?></label>
-	                                <div class="input">
+	                            </div><!-- /control-group -->
+	                            <div class="control-group">
+	                                <label class="control-label" for="chord<? print $p; ?>"><? print _('Tip chord'); ?></label>
+	                                <div class="controls">
 	                                    <div class="input-append">
 	                                        <input class="medium redraw" id="chord<? print $p; ?>" panel="<?= $p; ?>" name="chord<? print $p; ?>" size="10" value="<?= $_GET["chord$p"] ?>" type="text"
 	                                            rel="popover" data-content="<? print _('Chord in the tip of this panel'); ?>" data-original-title="<? print _('Tip Chord'); ?>">
 	                                        <span class="add-on small">mm</span>
 	                                    </div>
 	                                </div>
-	                            </div><!-- /clearfix -->
-	                            <div class="clearfix">
-	                                <label for="sweep<? print $p; ?>"><? print _('Sweep'); ?></label>
-	                                <div class="input">
+	                            </div><!-- /control-group -->
+	                            <div class="control-group">
+	                                <label class="control-label" for="sweep<? print $p; ?>"><? print _('Sweep'); ?></label>
+	                                <div class="controls">
 	                                    <div class="input-append">
 	                                        <input class="medium redraw recalcangle" id="sweep<? print $p; ?>" panel="<?= $p; ?>" name="sweep<? print $p; ?>" size="10" value="<?= $_GET["sweep$p"] ?>" type="text"
 	                                            rel="popover" data-content="<? print _('For forward swept wings panels use negative values.'); ?>" data-original-title="<? print _('Sweep'); ?>">
 	                                        <span class="add-on small">mm</span>
 	                                    </div>
 	                                </div>
-	                            </div><!-- /clearfix -->
-	                            <div class="clearfix">
-	                                <label for="angle<?= $p; ?>"><? print _('Angle'); ?></label>
-	                                <div class="input">
+	                            </div><!-- /control-group -->
+	                            <div class="control-group">
+	                                <label class="control-label" for="angle<?= $p; ?>"><? print _('Angle'); ?></label>
+	                                <div class="controls">
 	                                    <div class="input-append">
 	                                        <input class="medium redraw recalcsweep" id="angle<?= $p; ?>" panel="<?= $p; ?>" name="angle<?= $p; ?>" size="10" type="text" value="<?= $_GET["angle$p"] ?>"
 	                                            rel="popover" data-content="<? print _('For forward swept wings use negative values. Enter the angle in degrees to calculate the sweep value and vice-versa.'); ?>" data-original-title="<? print _('Angle'); ?>">
 	                                        <span class="add-on small">&deg;</span>
 	                                    </div>
 	                                </div>
-	                            </div><!-- /clearfix -->
+	                            </div><!-- /control-group -->
 	                        </fieldset>
 						<? } ?>
                     </form>
@@ -277,169 +278,181 @@ for ($i = 1; $i < 6; $i++) {
                 <div class="span6">
                     <div>
                         <h2><? print _('Results'); ?></h2>
-                        <form id="resultsform" action="" class="">
+                        <form id="resultsform" class="form-horizontal" action="" class="" onsubmit="return false">
                         <input type="hidden" id="deeplinkurl" name="deeplinkurl" value="">                        
-                            <fieldset>
-                                <div class="clearfix">
-                                    <label for="area"><? print _('Wing Area'); ?></label>
-                                    <div class="input">
+                            <fieldset class="control-group">
+                                <div class="control-group">
+                                    <label class="control-label" for="area"><? print _('Wing Area'); ?></label>
+                                    <div class="controls">
                                         <div class="input-append">
                                             <input class="medium" id="area" name="area" size="10" type="text">
                                             <span id="areaunit" class="add-on small">dm&sup2;</span>
                                         </div>
                                     </div>
-                                </div><!-- /clearfix -->
-                                <div class="clearfix">
-                                    <label for="macdist"><? print _('MAC Distance'); ?></label>
-                                    <div class="input">
+                                </div><!-- /control-group -->
+                                <div class="control-group">
+                                    <label class="control-label" for="macdist"><? print _('MAC Distance'); ?></label>
+                                    <div class="controls">
                                         <div class="input-append">
                                             <input class="medium" id="macdist" name="macdist" size="10" type="text">
                                             <span class="add-on small">mm</span>
                                         </div>
                                     </div>
-                                </div><!-- /clearfix -->
-                                <div class="clearfix">
-                                    <label for="maclen"><? print _('MAC Length'); ?></label>
-                                    <div class="input">
+                                </div><!-- /control-group -->
+                                <div class="control-group">
+                                    <label class="control-label" for="maclen"><? print _('MAC Length'); ?></label>
+                                    <div class="controls">
                                         <div class="input-append">
                                             <input class="medium" id="maclen" name="maclen" size="10" type="text">
                                             <span class="add-on small">mm</span>
                                         </div>
                                     </div>
-                                </div><!-- /clearfix -->
-                                <div class="clearfix">
-                                    <label for="cgdist"><? print _('CG'); ?></label>
-                                    <div class="input">
+                                </div><!-- /control-group -->
+                                <div class="control-group">
+                                    <label class="control-label" for="cgdist"><? print _('CG'); ?></label>
+                                    <div class="controls">
                                         <div class="input-append">
                                             <input class="medium" id="cgdist" name="cgdist" size="10" type="text">
                                             <span class="add-on small">mm</span>
                                         </div>
                                     </div>
-                                </div><!-- /clearfix -->
+                                </div><!-- /control-group -->
                              
-                                <div class="clearfix">
-                                    <label for="wingload"><? print _('Wing Load'); ?></label>
-                                    <div class="input">
+                                <div class="control-group">
+                                    <label class="control-label" for="wingload"><? print _('Wing Load'); ?></label>
+                                    <div class="controls">
                                         <div class="input-append">
                                             <input class="medium" id="wingload" name="wingload" size="10" type="text">
                                             <span id="wingloadunit" class="add-on small">g/dm&sup2;</span>
                                         </div>
                                     </div>
-                                </div><!-- /clearfix -->
+                                </div><!-- /control-group -->
 
-								<div class="clearfix">
-								    <label for="publicurl"><? print _('Deep linking URL'); ?></label>
-								    <div class="input">
+								<div class="control-group">
+								    <label class="control-label" for="publicurl"><? print _('Deep linking URL'); ?></label>
+								    <div class="controls">
 							            <input class="medium" id="publicurl" name="publicurl" size="300" type="text">
-	                                	<button id="btn_shortit" class="btn primary"><? print _('Short it!'); ?></button>             
 								    </div>
-								</div><!-- /clearfix -->
-								<div class="clearfix">
-								    <div class="input">
-								    	<button id="btn_savepng" class="btn primary"><? print _('Save image'); ?></button>
+								</div><!-- /control-group -->
+								<div class="control-group">
+								    <div class="controls">
+                                        <button id="btn_shortit" class="btn btn-primary"><? print _('Short it!'); ?></button>             
+								    	<button id="btn_savepng" class="btn btn-primary"><? print _('Save image'); ?></button>
 								    	<br/>
-								    	<br/>
+                                        <br/>
 								    	<? print _("Note: We are limited by the current available API and cant choose an appropriate name of the saved file."); ?>
 								    </div>
-								</div><!-- /clearfix -->
+								</div><!-- /control-group -->
 								<? /*
-								<div class="clearfix">
-								    <label for="debug"><? print _('Debug info'); ?></label>
-								    <div class="input">
+								<div class="control-group">
+								    <label class="control-label" for="debug"><? print _('Debug info'); ?></label>
+								    <div class="controls">
 								        <textarea id="debug" name="debug" rows="10">
 								        </textarea>
 								    </div>
-								</div><!-- /clearfix --> 
+								</div><!-- /control-group --> 
 								*/ ?>								
                             </fieldset>
                         </form>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="span12">
-                    <h2><? print _('About'); ?></h2>
-                    <p><? print _("Ive used the excelent work of z80 (<a href=\"http://fwcg.3dzone.dk/\">http://fwcg.3dzone.dk/</a>) in the past, but the limitations of one single panel and no forward sweep made me look for multi-panel CG calcs, and Ive found only very old windows programs. Accustomed to the online and direct use of z80's tool, Ive decided to make my own online CG calculator, with forward sweep and multiple panels."); ?></p>
-                    <p><? print _("WingCGCalc is a flying wing CG calculator flexible enough to calculate complex wings, with multiple panels and forward swept. As the percentual position of the MAC for the CG is also configurable, you can use it with standard airplanes (with tail) too, It's only a question of configuring the right amount."); ?></p>
+        </div>	
+    </div> <!-- /container -->
 
+    <br/>
+
+    <div class="container">
+        <div class="content">
+            <div class="row">
+                <div class="span3">
+                    <h2><? print _('About'); ?></h2>
+                    <p><small><? print _("Ive used the excelent work of z80 (<a href=\"http://fwcg.3dzone.dk/\">http://fwcg.3dzone.dk/</a>) in the past, but the limitations of one single panel and no forward sweep made me look for multi-panel CG calcs, and Ive found only very old windows programs. Accustomed to the online and direct use of z80's tool, Ive decided to make my own online CG calculator, with forward sweep and multiple panels."); ?>
+                    </small></p>
+                    <p><small><? print _("WingCGCalc is a flying wing CG calculator flexible enough to calculate complex wings, with multiple panels and forward swept. As the percentual position of the MAC for the CG is also configurable, you can use it with standard airplanes (with tail) too, It's only a question of configuring the right amount."); ?>
+                    </small></p>
+                </div>
+                <div class="span3">
                     <h2><? print _('TODO'); ?></h2>
                     <ul>
-                        <li><strike><? print _("Deep-link for wings designs"); ?></strike></li>
-                        <li><strike><? print _("Better wing drawings: whole wing and measuring in the canvas"); ?></strike></li>
-                        <li><strike><? print _("Better wing drawings 2, the mission: measuring in the canvas"); ?></strike></li>
-                        <li><strike><? print _("No more DOS in bit.ly, manual URL shorting."); ?></strike></li>
-                        <li><strike><? print _("Save canvas as image."); ?></strike></li>
-                        <li><? print _("Save option to build a database of wings designs"); ?></li>
-                        <li><? print _("Any other ideias? Please contact me."); ?></li>
+                        <li><strike><small><? print _("Deep-link for wings designs"); ?></small></strike></li>
+                        <li><strike><small><? print _("Better wing drawings: whole wing and measuring in the canvas"); ?></small></strike></li>
+                        <li><strike><small><? print _("Better wing drawings 2, the mission: measuring in the canvas"); ?></small></strike></li>
+                        <li><strike><small><? print _("No more DOS in bit.ly, manual URL shorting."); ?></small></strike></li>
+                        <li><strike><small><? print _("Save canvas as image."); ?></small></strike></li>
+                        <li><small><? print _("Save option to build a database of wings designs"); ?></small></li>
+                        <li><small><? print _("Any other ideias? Please contact me."); ?></small></li>
                     </ul>
-
+                </div>
+                <div class="span6">
                     <h2><? print _('History'); ?></h2>
                     <ul>
                         <li><h4><? print _("v 1.6"); ?></h4>
                             <ul>
-                                <li><? print _("Wing loading calculation."); ?></li>
-                                <li><? print _("BUGFIX: URL shorting now has a smaller timeout, 2 seconds."); ?></li>
-                                <li><? print _("BUGFIX: Small translation issues."); ?></li>
+                                <li><small><? print _("Wing loading calculation."); ?></small></li>
+                                <li><small><? print _("BUGFIX: URL shorting now has a smaller timeout, 2 seconds."); ?></small></li>
+                                <li><small><? print _("BUGFIX: Small translation issues."); ?></small></li>
                             </ul>
                         </li>
-	                    <li><h4><? print _("v 1.5"); ?></h4>
-	                        <ul>
-	                            <li><? print _("Now with angle recalculated as needed when span and/or sweep values are changed and vice-versa."); ?></li>
-	                            <li><? print _("BUGFIX: Firefox fixes."); ?></li>
-	                            <li><? print _("URL shorting is now manual."); ?></li>
-	                        </ul>
-	                    </li>
-	                    <li><h4><? print _("v 1.4"); ?></h4>
-	                        <ul>
-	                            <li><? print _("BUGFIX: the MAC calculation for multi-panel was wrong, corrected thanks to LaercioLMB from e-voo.com."); ?></li>
-	                            <li><? print _("New display code and html arrange in the page now shows the whole wing."); ?></li>
-	                        </ul>
-	                    </li>
-	                    <li><h4><? print _("v 1.3.1"); ?></h4>
-	                        <ul>
-	                            <li><? print _("if the url shortening fails in any way use the full URL instead."); ?></li>
-	                        </ul>
-	                    </li>	                    
-						<li><h4><? print _("v 1.3"); ?></h4>
-						    <ul>
-						        <li><? print _("big rework to allow deep linking to arbitrary wings with bit.ly url shorting."); ?></li>
-						    </ul>
-						</li>
-	                    <li><h4><? print _("v 1.2.1"); ?></h4>
-	                        <ul>
-	                            <li><? print _("i18n bugfixing."); ?></li>
-	                            <li><? print _("A proper build system, Makefile and so on."); ?></li>
-	                        </ul>
-	                    </li>
-	                    
+                        <li><h4><? print _("v 1.5"); ?></h4>
+                            <ul>
+                                <li><small><? print _("Now with angle recalculated as needed when span and/or sweep values are changed and vice-versa."); ?></small></li>
+                                <li><small><? print _("BUGFIX: Firefox fixes."); ?></small></li>
+                                <li><small><? print _("URL shorting is now manual."); ?></small></li>
+                            </ul>
+                        </li>
+                        <li><h4><? print _("v 1.4"); ?></h4>
+                            <ul>
+                                <li><small><? print _("BUGFIX: the MAC calculation for multi-panel was wrong, corrected thanks to LaercioLMB from e-voo.com."); ?></small></li>
+                                <li><small><? print _("New display code and html arrange in the page now shows the whole wing."); ?></small></li>
+                            </ul>
+                        </li>
+                        <li><h4><? print _("v 1.3.1"); ?></h4>
+                            <ul>
+                                <li><small><? print _("if the url shortening fails in any way use the full URL instead."); ?></small></li>
+                            </ul>
+                        </li>                       
+                        <li><h4><? print _("v 1.3"); ?></h4>
+                            <ul>
+                                <li><small><? print _("big rework to allow deep linking to arbitrary wings with bit.ly url shorting."); ?></small></li>
+                            </ul>
+                        </li>
+                        <li><h4><? print _("v 1.2.1"); ?></h4>
+                            <ul>
+                                <li><small><? print _("i18n bugfixing."); ?></small></li>
+                                <li><small><? print _("A proper build system, Makefile and so on."); ?></small></li>
+                            </ul>
+                        </li>
+                        
                         <li><h4><? print _("v 1.2"); ?></h4>
                             <ul>
-                                <li><? print _("Added About and History in end of the page."); ?></li>
-                                <li><? print _("Proper internationalization with gettext support. If you want wingcgcalc in your language and can contribute with the translation, please contact me."); ?></li>
-                                <li><? print _("Options moved to the start of the measures forms, a few users didnt found the CG % with it the end."); ?></li>
-                                <li><? print _("Popups implemented with little helper texts for each entry."); ?></li>
+                                <li><small><? print _("Added About and History in end of the page."); ?></small></li>
+                                <li><small><? print _("Proper internationalization with gettext support. If you want wingcgcalc in your language and can contribute with the translation, please contact me."); ?></small></li>
+                                <li><small><? print _("Options moved to the start of the measures forms, a few users didnt found the CG % with it the end."); ?></small></li>
+                                <li><small><? print _("Popups implemented with little helper texts for each entry."); ?></small></li>
                             </ul>
                         </li>
                         <li><h4><? print _("v 1.1"); ?></h4>
                             <ul>
-                                <li><? print _("Brazilian Portuguese translation added."); ?></li>
-                                <li><? print _("Unit system switch between metric and imperial systems."); ?></li>
-                                <li><? print _("A little less broken with Internet Explorers (still without canvas support)."); ?></li>
+                                <li><small><? print _("Brazilian Portuguese translation added."); ?></small></li>
+                                <li><small><? print _("Unit system switch between metric and imperial systems."); ?></small></li>
+                                <li><small><? print _("A little less broken with Internet Explorers (still without canvas support)."); ?></small></li>
                             </ul>
                         </li>
                         <li><h4><? print _("v 1.0"); ?></h4>
                             <ul>
-                                <li><? print _("Initial version."); ?></li>
+                                <li><small><? print _("Initial version."); ?></small></li>
                             </ul>
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>	
+        </div>
         <footer>
             <p>&copy; Sergio Bruder 2011-2012</p>
         </footer>
-    </div> <!-- /container -->
+    </div>
+
     <div id="noIE" class="modal hide fade">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
