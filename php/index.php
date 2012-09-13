@@ -12,14 +12,17 @@ include('../php/i18n.php');
     plane,aircraft,fuel,airplane,heli,nitro,car,foamy,parkflyer,lipo,battery,brushless,video,gallery" />
     <meta itemprop="name" content="Flying Wing CG Calculator">
     <meta itemprop="description" content="HTML5 Flying Wing CG Calculator with support to multiple panels and forward sweep.">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     <link rel="stylesheet" href="../css/wingcgcalc.css">
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!--[if IE]><script src="js/excanvas.compiled.js"></script><![endif]-->
     <script src="../js/jquery-1.7.1.min.js"></script>
+    <script src="../js/bootstrap.js"></script>
+    <!-- 
     <script src="../js/bootstrap-twipsy.js"></script>
     <script src="../js/bootstrap-popover.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
+    -->
     <script src="../js/wingcgcalc.js"></script>
     <script src="../js/base64.js"></script>
     <script src="../js/canvas2image.js"></script>
@@ -36,30 +39,42 @@ include('../php/i18n.php');
     </script>
 </head>
 <body>
-
-    <div class="topbar">
-      <div class="fill">
-        <div class="container">
+<?
+if (!isset($_GET['unitsystem'])) {
+    $_GET['panelsqty'] = 1;
+    $_GET['unitsystem'] = 'metric';
+    $_GET['cgpos'] = 20;
+    $_GET['weight'] = 600;
+    $_GET['panelspan1'] = 600;
+    $_GET['chord0'] = 340;
+    $_GET['chord1'] = 180;
+    $_GET['sweep1'] = 300;
+    $_GET['angle1'] = 26.57;
+}
+for ($i = 1; $i < 6; $i++) {
+    if (!isset($_GET["panel$i"]) and isset($_GET["panelspan$i"]) and floatval($_GET["panelspan$i"])>0) {
+        $_GET["angle$i"] = str_replace(',', '.', round(atan(floatval($_GET["sweep$i"])/floatval($_GET["panelspan$i"])) * (180/M_PI),2));
+    }
+}
+?>
+    <div id="navbar" class="navbar navbar-inverse">
+        <div class="navbar-inner">
           <a class="brand" href="#">WingCGCalc</a>
           <ul class="nav">
             <li class="active"><a href="/"><? print _('Home'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/"><? print _('Blog'); ?></a></li>
             <li><a href="http://sergio.bruder.com.br/sobre/"><? print _('Contact'); ?></a></li>
-            <li><a href="../pt_BR/" id="link_pt_BR"><img src="../imgs/flag_brasil.png"  width="22" height="16"></a></li>
-            <li><a href="../en_US/" id="link_en_US"><img src="../imgs/flag_england.png" width="22" height="16"></a></li>
+            <li><a href="../pt_BR/" id="link_pt_BR"><img src="../img/flag_brasil.png"  width="22" height="16"></a></li>
+            <li><a href="../en_US/" id="link_en_US"><img src="../img/flag_england.png" width="22" height="16"></a></li>
           </ul>
         </div>
-      </div>
     </div>
 
     <div class="container">
         <div class="content">
             <div class="page-header">
                 <div class="row">
-                    <div class="span3">
-                        <h1><? print _('WingCGCalc'); ?></h1>
-                    </div>
-                    <div id="googlead" class="span13">
+                    <div id="googlead" class="span10 offset2">
                         <script type="text/javascript"><!--
                         google_ad_client = "ca-pub-8746171184192742";
                         /* cgcalc-big */
@@ -72,27 +87,14 @@ include('../php/i18n.php');
                         </script>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="span12">
+                        <h1><? print _('WingCGCalc'); ?></h1>
+                    </div>
+                </div>
             </div>
-            <?
-            if (!isset($_GET['unitsystem'])) {
-                $_GET['panelsqty'] = 1;
-                $_GET['unitsystem'] = 'metric';
-                $_GET['cgpos'] = 20;
-                $_GET['weight'] = 600;
-                $_GET['panelspan1'] = 600;
-                $_GET['chord0'] = 340;
-                $_GET['chord1'] = 180;
-                $_GET['sweep1'] = 300;
-                $_GET['angle1'] = 26.57;
-            }
-            for ($i = 1; $i < 6; $i++) {
-                if (!isset($_GET["panel$i"]) and isset($_GET["panelspan$i"]) and floatval($_GET["panelspan$i"])>0) {
-                    $_GET["angle$i"] = str_replace(',', '.', round(atan(floatval($_GET["sweep$i"])/floatval($_GET["panelspan$i"])) * (180/M_PI),2));
-                }
-            }
-            ?>
             <div class="row">
-	            <div class="span16">
+	            <div class="span12">
 	                <h2><? print _('Wing'); ?></h2>
 	                <canvas id="wingcanvas" width="940" height="300"></canvas>
 	            </div>
@@ -272,7 +274,7 @@ include('../php/i18n.php');
 						<? } ?>
                     </form>
                 </div>
-                <div class="span10">
+                <div class="span6">
                     <div>
                         <h2><? print _('Results'); ?></h2>
                         <form id="resultsform" action="" class="">
@@ -355,7 +357,7 @@ include('../php/i18n.php');
                 </div>
             </div>
             <div class="row">
-                <div class="span16">
+                <div class="span12">
                     <h2><? print _('About'); ?></h2>
                     <p><? print _("Ive used the excelent work of z80 (<a href=\"http://fwcg.3dzone.dk/\">http://fwcg.3dzone.dk/</a>) in the past, but the limitations of one single panel and no forward sweep made me look for multi-panel CG calcs, and Ive found only very old windows programs. Accustomed to the online and direct use of z80's tool, Ive decided to make my own online CG calculator, with forward sweep and multiple panels."); ?></p>
                     <p><? print _("WingCGCalc is a flying wing CG calculator flexible enough to calculate complex wings, with multiple panels and forward swept. As the percentual position of the MAC for the CG is also configurable, you can use it with standard airplanes (with tail) too, It's only a question of configuring the right amount."); ?></p>
@@ -440,14 +442,14 @@ include('../php/i18n.php');
     </div> <!-- /container -->
     <div id="noIE" class="modal hide fade">
             <div class="modal-header">
-              <a href="#" class="close">×</a>
-              <h3><? print _('Internet Explorer not supported'); ?></h3>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3><? print _('Internet Explorer not supported'); ?></h3>
             </div>
             <div class="modal-body">
               <p><? print _('WingCGCalc uses a great deal of HTML5, javascript and canvas support, which Internet Explorer currently cant support (there is no CANVAS in Internet Explorer, for example). Sorry. Use any other modern browser.'); ?></p>
             </div>
             <div class="modal-footer">
-              <a href="#" class="btn primary"><? print _('Ok'); ?></a>
+              <a href="#" data-dismiss="modal" class="btn primary"><? print _('Ok'); ?></a>
             </div>
     </div>
     <script>

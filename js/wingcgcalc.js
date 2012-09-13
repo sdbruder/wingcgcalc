@@ -616,7 +616,7 @@ function wingcgcalc_setup() {
     window.systemunit = unitSys.val();
 
     // setup modals
-    $("#noIE").modal({keyboard: true, backdrop: 'static'});
+    //$("#noIE").modal({keyboard: true, backdrop: 'static'});
 
     // setup popovers
     $(function () {

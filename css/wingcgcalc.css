@@ -1,11 +1,11 @@
 /* Override some defaults */
 html, body {
 background-color: #eee;
-background-image: url("../imgs/rubber_grip.png");
+background-image: url("../img/cardboard.png");
 }
-body {
-padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
-}
+/*body {
+padding-top: 40px;  40px to make the container go all the way to the bottom of the topbar 
+}*/
 footer {
     border-top: 0px;
     margin-top: 0px;
@@ -69,7 +69,7 @@ position: relative;
 left: 32px;
 }
 
-body .topbar .fill {
+body .navbar .navbar-inner {
     background-color: #161f44;
     background-color: #161f44;
     background-repeat: repeat-x;
@@ -86,17 +86,6 @@ body .topbar .fill {
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25),inset 0 -1px 0 rgba(0, 0, 0, 0.1);
 }
 
-/* Give a quick and non-cross-browser friendly divider */
-.content .span4 {
-margin-left: 0;
-padding-left: 19px;
-border-left: 1px solid #eee;
-}
-
-.topbar .btn {
-border: 0;
-}
-
 /* Fix por input append not clearing help texts correctly */
 .input-append, .input-prepend {
  overflow: auto;
@@ -110,7 +99,7 @@ border: 0;
     height: 400px;*/
     width:  940px;
     height: 400px;
-    background-image: url("../imgs/green_graphy.png");
+    background-image: url("../img/green_graphy.png");
 }
 
 .small {
