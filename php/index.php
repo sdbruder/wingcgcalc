@@ -78,6 +78,8 @@ for ($i = 1; $i < 6; $i++) {
     <div class="container">
         <div class="content">
             <div class="page-header">
+            <? $random = mt_rand(0,1);
+               if ($random) { ?>
                 <div class="row">
                     <div id="googlead" class="span10 offset2">
                         <script type="text/javascript"><!--
@@ -92,6 +94,26 @@ for ($i = 1; $i < 6; $i++) {
                         </script>
                     </div>
                 </div>
+            <? } else { ?>
+                <div class="row">
+                    <div class="span6">
+                        <h1><? print _('WingCGCalc'); ?></h1>
+                    </div>
+                    <div id="googlead-468" class="span6">
+                        <script type="text/javascript"><!--
+                        google_ad_client = "ca-pub-8746171184192742";
+                        /* cgcalc-468x60 */
+                        google_ad_slot = "8864272650";
+                        google_ad_width = 468;
+                        google_ad_height = 60;
+                        //-->
+                        </script>
+                        <script type="text/javascript"
+                        src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+                        </script>
+                    </div>
+                </div>
+            <? } ?>
                 <!-- <div class="row">
                     <div class="span12">
                         <h1><? print _('WingCGCalc'); ?></h1>
