@@ -40,6 +40,12 @@ include('../php/i18n.php');
 <body>
 <?
 if (!isset($_GET['unitsystem'])) {
+    for ($i = 1; $i < 6; $i++) {
+        $_GET["panelspan$i"] = 0;
+        $_GET["chord$i"] = 0;
+        $_GET["sweep$i"] = 0;
+        $_GET["angle$i"] = 0;
+    }
     $_GET['panelsqty'] = 1;
     $_GET['unitsystem'] = 'metric';
     $_GET['cgpos'] = 20;
