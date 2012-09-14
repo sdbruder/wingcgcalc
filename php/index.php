@@ -1,6 +1,8 @@
 <?
 // gettext setup
 include('../php/i18n.php');
+// version
+$version = '10701';
 ?>
 <!DOCTYPE html>
 <html lang="en" itemscope itemtype="http://schema.org/tool">
@@ -12,17 +14,17 @@ include('../php/i18n.php');
     <meta itemprop="name" content="Flying Wing CG Calculator">
     <meta itemprop="description" content="HTML5 Flying Wing CG Calculator with support to multiple panels and forward sweep.">
     <link rel="stylesheet" href="../css/bootstrap.css">
-    <link rel="stylesheet" href="../css/wingcgcalc.css">
+    <link rel="stylesheet" href="../css/wingcgcalc.<?= $version ?>.css">
     <!--[if lt IE 9]><script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!--[if IE]><script src="js/excanvas.compiled.js"></script><![endif]-->
     <script src="../js/jquery-1.7.1.min.js"></script>
-    <script src="../js/bootstrap.js"></script>
+    <script src="../js/bootstrap.<?= $version ?>.js"></script>
     <!-- 
     <script src="../js/bootstrap-twipsy.js"></script>
     <script src="../js/bootstrap-popover.js"></script>
     <script src="../js/bootstrap-modal.js"></script>
     -->
-    <script src="../js/wingcgcalc.js"></script>
+    <script src="../js/wingcgcalc.<?= $version ?>.js"></script>
     <script src="../js/base64.js"></script>
     <script src="../js/canvas2image.js"></script>
     <script type="text/javascript">
